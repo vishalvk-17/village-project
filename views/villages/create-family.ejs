@@ -1,0 +1,27 @@
+<%- layout("/layouts/boilerplate") %>
+<body>
+    <h3>Create your family</h3>
+    <form method="post" action="/families">
+        <label>Head Name:</label><br>
+        <input placeholder="enter head name" name="headName" required>
+        <br><br>
+
+        <label>Address Line 1:</label><br>
+        <input type="text" name="address[line1]" placeholder="House No / Street">
+        <br><br>
+
+        <label>Village:</label><br>
+        <input type="text" name="address[village]" placeholder="Village Name">
+        <br><br>
+
+        <label>District:</label><br>
+        <input type="text" name="address[district]" placeholder="District">
+        <br><br>
+
+        <label>Pincode:</label><br>
+        <input type="text" name="address[pincode]" placeholder="Pincode">
+        <br>
+        <button>Add Family</button>
+        <br><br>
+    </form>
+</body>

@@ -1,0 +1,341 @@
+<%- layout("/layouts/boilerplate") %>
+<!-- home.ejs -->
+<head>
+    <style>
+    body {
+        background: #f9fafb;
+        }
+        .section-title {
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #2c3e50;
+        }
+        .notice-board {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .notice-item {
+        border-bottom: 1px dashed #ddd;
+        padding: 0.7rem 0;
+        }
+        .notice-item:last-child {
+        border-bottom: none;
+        }
+        .gallery img {
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        #developer .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #developer .card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+
+  <!-- Main Content -->
+  <main class="container my-5">
+
+    <!-- About Section -->
+    <section class="mb-5 ">
+      <h2 class="section-title">About Our Village</h2>
+      <div class="row align-items-center ">
+        <div class="col-md-6">
+          <p class="lead">
+            हमारा गाँव परंपराओं और संस्कृति से भरा हुआ है। यहाँ लोग मिलजुल कर रहते हैं और त्योहारों को बड़े उत्साह से मनाते हैं। 
+            प्राकृतिक सुंदरता और स्वच्छ वातावरण इसे और भी खास बनाते हैं।
+          </p>
+        </div>
+        <div class="col-md-6">
+          <img src="https://images.unsplash.com/photo-1591883093451-83abd0f56a1f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Village" class="img-fluid rounded shadow">
+        </div>
+      </div>
+    </section>
+
+    <!-- Notice Board -->
+    <section class="mb-5">
+      <h2 class="section-title">Notice Board</h2>
+      <div class="notice-board">
+        <div class="notice-item">
+          <i class="bi bi-megaphone text-primary"></i> गाँव में स्वच्छता अभियान 15 सितम्बर को होगा।
+        </div>
+        <div class="notice-item">
+          <i class="bi bi-calendar-event text-success"></i> नवरात्रि महोत्सव 22 सितम्बर से शुरू होगा।
+        </div>
+        <div class="notice-item">
+          <i class="bi bi-people-fill text-danger"></i> ग्राम सभा की बैठक 20 सितम्बर को आयोजित की जाएगी।
+        </div>
+      </div>
+    </section>
+
+    <!-- Culture & Traditions -->
+    <section class="mb-5">
+      <h2 class="section-title">Culture & Traditions</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <img src="https://plus.unsplash.com/premium_photo-1682090882077-31b6875e8822?q=80&w=998&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Festival">
+            <div class="card-body">
+              <h5 class="card-title">Festivals</h5>
+              <p class="card-text">हमारे गाँव में दिवाली, होली और नवरात्रि बड़े हर्षोल्लास से मनाए जाते हैं।</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1723066217456-cf0b10ceda2b?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Food">
+            <div class="card-body">
+              <h5 class="card-title">Traditional Food</h5>
+              <p class="card-text">यहाँ की खासियत है देसी व्यंजन जैसे दाल-बाटी, पूड़ी और मिठाइयाँ।</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1717011969223-0217a302ec6f?q=80&w=986&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Dance">
+            <div class="card-body">
+              <h5 class="card-title">Folk Dance</h5>
+              <p class="card-text">गाँव के लोग पारंपरिक नृत्यों और गीतों से त्योहारों को जीवंत बनाते हैं।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+<!-- Temples Section -->
+    <section class="py-5 bg-light" id="temples">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold">🙏 हमारे गाँव के मंदिर</h2>
+    <div class="row g-4">
+      
+      <!-- Radha Krishna Temple -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="https://plus.unsplash.com/premium_photo-1676111266437-027b26837de3?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Radha Krishna Mandir">
+          <div class="card-body">
+            <h5 class="card-title text-danger fw-bold"><b>राधाकृष्ण मंदिर</b></h5>
+            <p class="card-text">यह मंदिर हमारे गाँव का प्रमुख धार्मिक स्थल है जहाँ प्रतिदिन भजन और आरती होती है।</p>
+            <p class="text-muted"><strong>समिति:</strong> राधाकृष्ण मंदिर समिति</p>
+            <p class="card-text"><strong>समिति प्रमुख:</strong> बलराम राजपूत</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shri Ram Temple -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="https://images.unsplash.com/photo-1678593628844-6ea49dee8ce3?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Shri Ram Mandir">
+          <div class="card-body">
+            <h5 class="card-title text-danger fw-bold"><b>श्रीराम मंदिर</b></h5>
+            <p class="card-text">गाँव के मध्य स्थित यह मंदिर रामभक्तों का आस्था केंद्र है और रामनवमी विशेष उत्सव होता है।</p>
+            <p class="text-muted"><strong>समिति:</strong> श्रीराम मंदिर समिति</p>
+            <p class="card-text"><strong>समिति प्रमुख:</strong> देवेंद्र राजपूत</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hanuman Temple -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <img src="https://images.unsplash.com/photo-1733396722075-0fc6e89efad9?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Hanuman Mandir">
+          <div class="card-body">
+            <h5 class="card-title text-danger fw-bold"><strong>हनुमान मंदिर</strong></h5>
+            <p class="card-text">यहाँ प्रत्येक मंगलवार और शनिवार को विशेष पूजा और भजन संध्या का आयोजन होता है।</p>
+            <p class="text-muted"><strong>समिति:</strong> हनुमान मंदिर समिति</p>
+            <p class="card-text"><b>समिति प्रमुख:</b> दिनेश योगी</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Gaon Ke Sitare Section ====== -->
+<section id="gaon-ke-sitare" class="py-5 bg-white">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold text-success">🌟 गाँव के सितारे 🌟</h2>
+    <div class="row g-4">
+
+      <!-- Star 1: NSG Commando -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-0">
+          <img src="\uploads\nsg.jpg" class="card-img-top" alt="NSG Commando">
+          <div class="card-body">
+            <h5 class="card-title text-primary fw-bold">NSG Commando</h5>
+            <p class="card-text">
+              हमारे गाँव के वीर बेटे ने NSG कमांडो के रूप में देश की सेवा करके गाँव का नाम रोशन किया है। 
+              उनकी मेहनत, अनुशासन और हिम्मत युवा पीढ़ी के लिए प्रेरणा का स्रोत है।  
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Star 2: Para Commando -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-0">
+          <img src="\uploads\vijay_para.jpg" class="card-img-top" alt="Para Commando">
+          <div class="card-body">
+            <h5 class="card-title text-danger fw-bold">Para Commando</h5>
+            <p class="card-text">
+              कठिन परिश्रम और दृढ़ संकल्प के बल पर इन्होंने पैराशूट रेजिमेंट में जगह बनाई।  
+              उनकी उपलब्धि गाँव के युवाओं में देशभक्ति और साहस की भावना जगाती है।  
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Star 3: Army Nursing -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-0">
+          <img src="\uploads\om_army.jpg" class="card-img-top" alt="Army Nursing">
+          <div class="card-body">
+            <h5 class="card-title text-success fw-bold">Army Nursing</h5>
+            <p class="card-text">
+              हमारे गाँव के बेटे ने आर्मी नर्सिंग सेवा में जाकर बीमार और घायल सैनिकों की सेवा का व्रत लिया।  
+              उनकी करुणा और समर्पण पूरे गाँव के लिए गर्व की बात है।  
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Star 4: Agniveer -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-0">
+          <img src="\uploads\rajesh_agniveer.jpg" class="card-img-top" alt="Agniveer">
+          <div class="card-body">
+            <h5 class="card-title text-warning fw-bold">Agniveer</h5>
+            <p class="card-text">
+              देश की सुरक्षा में योगदान देने के लिए इन्होंने अग्निवीर सेवा ज्वाइन की।  
+              उनका यह कदम गाँव के युवाओं को सेना में जाने के लिए प्रेरित करता है।  
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Star 5: Army GD -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-0">
+          <img src="\uploads\rahul_gd.jpg" class="card-img-top" alt="Army GD">
+          <div class="card-body">
+            <h5 class="card-title text-dark fw-bold">Army GD</h5>
+            <p class="card-text">
+              हमारी धरती के इस सपूत ने सेना की जनरल ड्यूटी में शामिल होकर देश की सीमाओं की रक्षा की।  
+              उनकी निष्ठा और समर्पण गाँव के लिए गौरव का विषय है।  
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Star 6: CRPF -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-0">
+          <img src="\uploads\rajesh_crpf.jpg" class="card-img-top" alt="CRPF Jawan">
+          <div class="card-body">
+            <h5 class="card-title text-info fw-bold">CRPF Jawan</h5>
+            <p class="card-text">
+              हमारे वीर जवान ने CRPF में शामिल होकर देश के भीतर शांति और सुरक्षा बनाए रखने का दायित्व निभाया।  
+              उनका जीवन संघर्ष और सेवा का उदाहरण है।  
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Gallery -->
+    <section class="mb-5">
+      <h2 class="section-title">Gallery</h2>
+      <div class="row g-3 gallery">
+        <div class="col-md-4 col-sm-6">
+          <img src="https://images.unsplash.com/photo-1638802180096-edcbe17c0903?q=80&w=1076&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gallery Image" class="img-fluid shadow">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <img src="https://plus.unsplash.com/premium_photo-1682092607850-4ee61bcf73c5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gallery Image" class="img-fluid shadow">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <img src="https://images.unsplash.com/photo-1629288335733-7b8f50048b31?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gallery Image" class="img-fluid shadow">
+        </div>
+      </div>
+    </section>
+
+
+  <hr>
+
+
+   <!-- Developer Section -->
+    <section class="developer-section py-5 bg-light">
+      <div class="container-md">
+        <h2 class="text-center mb-5 fw-bold">वेबसाइट डेवलपर</h2>
+
+        <div class="card shadow-lg border-0 rounded-4 mx-auto" style="max-width: 600px;">
+          <div class="card-body text-center p-5 position-relative">
+
+            <!-- Avatar with Photo -->
+            <div class="developer-avatar mx-auto mb-4" style="position: relative;">
+              <img src="\uploads\1758296760847.png" alt="Developer Photo"
+                  class="rounded-circle shadow"
+                  style="width: 120px; height: 120px; object-fit: cover; border: 4px solid #0d6efd;">
+              <!-- Optional glow effect -->
+              <span class="position-absolute top-0 start-50 translate-middle-x" style="width: 140px; height: 140px; border-radius: 50%; background: rgba(13, 110, 253, 0.15); z-index: -1;"></span>
+            </div>
+
+            <!-- Name + Title -->
+            <h3 class="developer-name mb-2 fw-bold" style="color: #0d6efd;">Vishal Prajapati</h3>
+            <p class="developer-title text-muted fst-italic mb-4">Web Developer & Designer</p>
+
+            <!-- Divider -->
+            <hr class="w-25 mx-auto mb-4" style="border-top: 3px solid #0d6efd; border-radius: 2px;">
+
+            <!-- Details in card style -->
+            <div class="text-start mx-auto" style="max-width: 400px;">
+              <p><strong>Education:</strong> <span class="text-primary fw-semibold">Bachelor in Computer Science Engineering</span></p>
+              <p><strong>Experience:</strong> <span class="text-primary fw-semibold">3+ Years</span></p>
+              <p><strong>Expertise:</strong> <span class="text-primary fw-semibold">Full Stack Development</span></p>
+              <p><strong>Phone:</strong> <a href="tel:+919617902310" class="text-decoration-none text-primary fw-semibold">+91 9617902310</a></p>
+              <p><strong>Email:</strong> <a href="mailto:pravishal777@gmail.com" class="text-decoration-none text-primary fw-semibold">pravishal777@gmail.com</a></p>
+            </div>
+
+
+            <!-- Quote with accent -->
+            <blockquote class="blockquote mt-4">
+              <p class="fst-italic fs-5 text-secondary">"तकनीक के माध्यम से गांव को डिजिटल बनाने का सपना"</p>
+            </blockquote>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-center gap-3 mt-4">
+              <a href="mailto:pravishal777@gmail.com" class="btn btn-primary btn-lg shadow-sm">
+                📧 संपर्क करें
+              </a>
+              <a href="#" class="btn btn-success btn-lg shadow-sm">
+                💼 पोर्टफोलियो
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+  </main>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>

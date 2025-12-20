@@ -1,0 +1,89 @@
+
+
+<style>
+    /* Hero Section Styling (as provided) */
+    .hero {
+      min-height: 40vh;
+      background: linear-gradient(135deg, #1e3c72, #2a5298); /* तुम्हारे वाले hero जैसा */
+      color: white;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298, #3a7bd5);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      letter-spacing: 1px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .hero .btn {
+      border-radius: 30px;
+      padding: 12px 30px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .hero .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Responsive tweaks (without changing your look) */
+    @media (max-width: 576px) {
+      .hero { padding: 48px 16px; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+    }
+
+    @media (min-width: 992px) {
+      .hero { min-height: 60vh; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero d-flex align-items-center justify-content-center text-center">
+    <div class="container">
+      <h1 class="fw-bold display-4">🏡 स्वागत है <span class="text-warning">भिलखेडा गांव</span> में</h1>
+      <p class="lead mt-3">हमारे डिजिटल पोर्टल पर आपका स्वागत है</p>
+
+      <!-- Buttons: stack on mobile, inline from small screens up -->
+      <div class="mt-4 d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center justify-content-center gap-3">
+        <a href="/register" class="btn btn-light btn-lg me-0 me-sm-3 shadow-sm w-100 w-sm-auto">अभी रजिस्टर करें</a>
+        <a href="/villagers" class="btn btn-outline-light btn-lg w-100 w-sm-auto">गांववासी देखें</a>
+      </div>
+    </div>
+  </section>
+
+  
+
+
+
+
+
+
+<!-- Hero Section
+    <section id="home" class="gradient-bg hero">
+        <div class="container text-center">
+            <h1>स्वागत है भिलखेड़ा गांव में</h1>
+            <p>हमारे डिजिटल पोर्टल पर आपका स्वागत है</p>
+            <div class="hero-buttons">
+                <a href="/addUser">
+                    <button onclick="scrollToSection('register')" class="btn btn-primary">
+                        अभी रजिस्टर करें
+                    </button>
+                </a>
+                <a href="/">
+                    <button onclick="scrollToSection('villagers')" class="btn btn-outline">
+                        गांववासी देखें
+                    </button>
+                </a>
+                
+            </div>
+        </div>
+    </section> -->

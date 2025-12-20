@@ -1,0 +1,72 @@
+<%- layout("/layouts/boilerplate") %>
+
+<body>
+  <div class="container my-5">
+    <!-- About Card -->
+    <div class="card shadow-lg border-0 mb-5">
+      <div class="row g-0 align-items-center">
+        <div class="col-md-4 text-center p-4">
+          <img src="https://images.unsplash.com/photo-1709146309856-edbbba033a7c?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+               class="img-fluid rounded shadow-sm" 
+               alt="Maharana Pratap" 
+               style="max-height: 300px; object-fit: cover;">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h2 class="card-title fw-bold text-primary mb-3">युवा ठाकुर संगठन</h2>
+            <p class="card-text fs-5">
+              हमारा संगठन महान योद्धा <b>महाराणा प्रताप</b> से प्रेरणा लेकर समाज और संस्कृति की रक्षा हेतु समर्पित है। 
+              संगठन का उद्देश्य युवाओं में साहस, एकता और स्वाभिमान की भावना जागृत करना है।
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Members Section -->
+    <h3 class="text-center fw-bold mb-4">संगठन के सदस्य</h3>
+    <div class="row g-4">
+      <% members.forEach(member => { %>
+        <div class="col-12 col-sm-6 col-md-4">
+          <div class="card h-100 shadow border-0">
+            <img src="<%= member.image %>" 
+                 class="card-img-top" 
+                 alt="<%= member.name %>">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-1"><%= member.name %></h5>
+              <p class="text-muted mb-0"><%= member.role %></p>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- communitu about  Section -->
+     <div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-body p-4">
+      <h3 class="card-title text-center mb-3 fw-bold text-primary">
+        हमारे संगठन के बारे में
+      </h3>
+      <p class="card-text fs-5 text-muted">
+        <strong>युवा ठाकुर संगठन</strong> एक ऐसा सामुदायिक परिवार है जहाँ सभी 
+        सदस्य <strong>राजपूत समाज</strong> से जुड़े हुए हैं। यह संगठन न केवल 
+        एकता और भाईचारे का प्रतीक है, बल्कि यह हमें हमारी गौरवशाली परंपराओं, 
+        संस्कारों और मूल्यों से जोड़े रखता है।  
+      </p>
+      <p class="card-text fs-5 text-muted">
+        यहाँ हर सदस्य का उद्देश्य समाज की सेवा करना, शिक्षा और संस्कार को आगे 
+        बढ़ाना, तथा युवाओं को महाराणा प्रताप जैसे वीरों से प्रेरणा लेकर 
+        आगे बढ़ने के लिए प्रोत्साहित करना है।  
+      </p>
+      <p class="card-text fs-5 text-muted">
+        हमारा सपना है कि हम अपने समाज की संस्कृति और गौरव को आने वाली पीढ़ियों 
+        तक पहुँचाएँ और सभी को एक मंच पर जोड़कर समाज में एक सकारात्मक बदलाव लाएँ।  
+      </p>
+      </div>
+    </div>
+    </div>
+    </div>
+
+</body>
+

@@ -1,0 +1,27 @@
+<%- layout("/layouts/boilerplate") %>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg p-4">
+        <h3 class="text-center mb-3">Login</h3>
+        <% if (error && error.length > 0) { %>
+          <div class="alert alert-danger"><%= error %></div>
+        <% } %>
+        <form action="/login" method="post">
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" required>
+          </div>
+          <div class="d-grid">
+            <button class="btn btn-primary">Login</button>
+          </div>
+        </form>
+        <p class="text-center mt-3">No account? <a href="/addUser">Register here</a></p>
+      </div>
+    </div>
+  </div>
+</div>

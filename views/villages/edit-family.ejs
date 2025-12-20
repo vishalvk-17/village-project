@@ -1,0 +1,32 @@
+<%- layout("/layouts/boilerplate") %>
+<body>
+    <h2>Edit Family Details</h2>
+
+    <form action="/families/<%= family._id %>?_method=PUT" method="POST">
+        <!-- Head Name -->
+        <label>Head Name:</label><br>
+        <input type="text" name="headName" value="<%= family.headName %>" required><br>
+
+        <!-- Address -->
+        <h3>Address</h3>
+        <label>Line 1:</label><br>
+        <input type="text" name="address[line1]" value="<%= family.address.line1 %>"><br>
+
+        <label>Village:</label><br>
+        <input type="text" name="address[village]" value="<%= family.address.village %>"><br>
+
+        <label>District:</label><br>
+        <input type="text" name="address[district]" value="<%= family.address.district %>"><br>
+
+        <label>State:</label><br>
+        <input type="text" name="address[state]" value="<%= family.address.state %>"><br>
+
+        <label>Pincode:</label><br>
+        <input type="text" name="address[pincode]" value="<%= family.address.pincode %>"><br><br>
+
+        <button type="submit">Update Family</button>
+    </form>
+
+    <br>
+    <a href="/families/<%= family._id %>">⬅ Back to Family Info</a>
+</body>

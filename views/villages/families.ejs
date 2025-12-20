@@ -1,0 +1,22 @@
+<%- layout("/layouts/boilerplate") %>
+
+<body>
+    <body>
+    <h2>All Families</h2>
+
+    <% if (families.length === 0) { %>
+        <p>No families found.</p>
+    <% } else { %>
+        <ul>
+            <% for (let family of families) { %>
+                <li>
+                    <strong><%= family.headName %></strong> 
+                    (<a href="/families/<%= family._id %>">View Details</a>)
+                </li>
+            <% } %>
+        </ul>
+    <% } %>
+
+    <br>
+    <a href="/families/new">➕ Add New Family</a>
+</body>

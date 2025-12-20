@@ -1,0 +1,291 @@
+<!-- Contact Section
+    <section id="contact" class="contact-section">
+        <div class="container-lg">
+            <div class="section-header">
+                <h2 class="section-title">संपर्क करें</h2>
+                <p class="section-subtitle">किसी भी सहायता के लिए हमसे संपर्क करें</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>संपर्क जानकारी</h3>
+                    <div class="space-y-4">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <div class="contact-label">पता</div>
+                                <div class="contact-value">भिलखेड़ा गांव, जिला, राज्य</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <div class="contact-label">फोन</div>
+                                <div class="contact-value">+91 98765 43210</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <div class="contact-label">ईमेल</div>
+                                <div class="contact-value">info@bhilkheda.gov.in</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>संदेश भेजें</h3>
+                    <form class="space-y-4">
+                        <input type="text" placeholder="आपका नाम" class="form-input">
+                        <input type="email" placeholder="ईमेल पता" class="form-input">
+                        <textarea placeholder="आपका संदेश" rows="4" class="form-textarea"></textarea>
+                        <button type="submit" class="btn btn-gradient btn-full">
+                            संदेश भेजें
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+
+<!-- Footer -->
+    <!-- <footer class="gradient-bg footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>🏘️ भिलखेड़ा गांव</h3>
+                    <p>हमारा डिजिटल पोर्टल गांव के विकास और सभी निवासियों को जोड़ने का काम करता है।</p>
+                    <div class="footer-social">
+                        <a href="#">📘</a>
+                        <a href="#">📷</a>
+                        <a href="#">🐦</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>त्वरित लिंक</h4>
+                    <ul class="footer-links space-y-2">
+                        <li><a href="#home">होम</a></li>
+                        <li><a href="#register">रजिस्ट्रेशन</a></li>
+                        <li><a href="#villagers">गांववासी</a></li>
+                        <li><a href="#services">सेवाएं</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>सहायता</h4>
+                    <ul class="footer-links space-y-2">
+                        <li><a href="#contact">संपर्क</a></li>
+                        <li><a href="#">सहायता केंद्र</a></li>
+                        <li><a href="#">नियम</a></li>
+                        <li><a href="#">गोपनीयता</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 भिलखेड़ा गांव डिजिटल पोर्टल। सभी अधिकार सुरक्षित।</p>
+            </div>
+        </div>
+    </footer> -->
+
+<style>
+    /* new footer desing */
+
+    /* Gradient Background (matches navbar) */
+    .gradient-bg {
+      background: linear-gradient(to right, #7c3aed, #2563eb);
+      color: #fff;
+    }
+
+    /* Footer Base */
+    .footer {
+      padding: 50px 20px 20px;
+      margin-top: 40px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Container */
+    .footer .container {
+      max-width: 1280px;
+      margin: auto;
+    }
+
+    /* Grid Layout */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 36px 28px;
+      align-items: start;
+    }
+
+    /* Brand */
+    .footer-brand h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      opacity: 0.95;
+    }
+
+    .footer-social a {
+      font-size: 18px;
+      margin-right: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    .footer-social a:hover {
+      opacity: 0.9;
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* Sections */
+    .footer-section h4 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #ffde59;
+    }
+
+    /* Bottom */
+    .footer-bottom {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      opacity: 0.95;
+    }
+
+    /* Responsive polish (kept your design intact) */
+    @media (max-width: 576px) {
+      .footer {
+        padding: 32px 14px 14px;
+      }
+
+      .footer-brand,
+      .footer-section,
+      .footer-bottom {
+        text-align: center;
+      }
+
+      .footer-grid {
+        gap: 22px 16px;
+      }
+
+      .footer-social {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .footer-brand h3 {
+        font-size: 19px;
+      }
+
+      .footer-brand p {
+        font-size: 13.5px;
+      }
+
+      .footer-links a {
+        display: inline-block;
+        padding: 6px 8px;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px 22px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .footer {
+        padding-top: 60px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.25fr 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Footer -->
+  <footer class="gradient-bg footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🏘️ भिलखेड़ा गांव</h3>
+          <p>हमारा डिजिटल पोर्टल गांव के विकास और सभी निवासियों को जोड़ने का काम करता है।</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter / X">🐦</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>त्वरित लिंक</h4>
+          <ul class="footer-links space-y-2">
+            <li><a href="#home">होम</a></li>
+            <li><a href="#register">रजिस्ट्रेशन</a></li>
+            <li><a href="#villagers">गांववासी</a></li>
+            <li><a href="#services">सेवाएं</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>सहायता</h4>
+          <ul class="footer-links space-y-2">
+            <li><a href="#contact">संपर्क</a></li>
+            <li><a href="#">सहायता केंद्र</a></li>
+            <li><a href="#">नियम</a></li>
+            <li><a href="#">गोपनीयता</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 भिलखेड़ा गांव डिजिटल पोर्टल। सभी अधिकार सुरक्षित।</p>
+      </div>
+    </div>
+  </footer>

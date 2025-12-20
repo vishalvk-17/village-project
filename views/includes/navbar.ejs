@@ -1,0 +1,160 @@
+<head> 
+  <style>
+    /* Attractive gradient navbar */
+    .cc-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1040;
+      background: linear-gradient(90deg, #7c3aed, #2563eb);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1);
+    }
+
+    .cc-brand {
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: .3px;
+      text-shadow: 0 1px 0 rgba(0,0,0,.15);
+    }
+
+    .cc-link {
+      color: #fff;
+      font-weight: 600;
+      border-radius: .5rem;
+      padding: .5rem .75rem;
+      text-decoration: none;
+      transition: .25s ease;
+    }
+    .cc-link:hover,
+    .cc-link:focus {
+      background: rgba(255,255,255,.18);
+      color: #fff;
+    }
+
+    /* Toggler look on gradient */
+    .navbar-toggler {
+      border-color: rgba(255,255,255,.55);
+      color: #fff;
+    }
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 .15rem rgba(255,255,255,.35);
+    }
+
+    /* Offcanvas styling to match navbar */
+    .offcanvas.cc-canvas {
+      background: linear-gradient(135deg, rgba(124,58,237,0.98), rgba(37,99,235,0.98));
+      color: #fff;
+      border-left: 0;
+    }
+    .offcanvas-header .btn-close {
+      filter: invert(1) grayscale(100%) brightness(200%);
+      opacity: .9;
+    }
+    .cc-canvas .list-group-item {
+      background: transparent;
+      border: 0;
+      padding: .5rem 0;
+    }
+
+    /* Subtle divider line inside canvas */
+    .cc-divider {
+      height: 1px;
+      background: rgba(255,255,255,.2);
+      margin: .25rem 0 .75rem 0;
+    }
+
+    /* Layout container width similar to your original */
+    .cc-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 .75rem;
+      width: 100%;
+    }
+  </style>
+</head>
+
+  <!-- Navbar -->
+  <nav class="cc-navbar navbar navbar-expand-lg">
+    <div class="cc-container">
+      <div class="d-flex align-items-center justify-content-between w-100" style="height: 4rem;">
+        <!-- Brand -->
+        <a class="navbar-brand m-0 cc-brand d-flex align-items-center gap-2" href="/" aria-label="Home">
+          <span style="font-size: 1.35rem;">🏘️</span>
+          <span class="fs-4">भिलखेड़ा गांव</span>
+        </a>
+
+        <!-- Right side: inline links for large screens + toggler for small screens -->
+        <div class="d-none d-lg-flex align-items-center gap-1">
+          <!-- Inline links (large screens) -->
+          <nav class="d-flex align-items-center gap-1">
+            <a href="/" class="cc-link">होम</a>
+
+            <!-- Dynamic section kept as-is (server fills this) -->
+            <% if (!currentUser) { %>
+              <a href="/register" class="cc-link">Register</a>
+              <a href="/login" class="cc-link">Login</a>
+            <% } else { %>
+              <a href="/logout" class="cc-link">Logout</a>
+              <% if (currentUser.role === 'admin') { %>
+                <a href="/admin" class="cc-link">Admin Panel</a>
+              <% } %>
+            <% } %>
+
+            <a href="/villagers" class="cc-link">गांववासी</a>
+            <a href="/community" class="cc-link">संगठन</a>
+            <a href="/about" class="cc-link">about</a>
+            <a href="#contact" class="cc-link">संपर्क</a>
+          </nav>
+        </div>
+
+        <!-- Toggler (always visible on small screens) -->
+        <button class="navbar-toggler d-lg-none d-inline-flex align-items-center gap-2" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu"
+                aria-label="Open menu">
+          <!-- Hamburger icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <span class="text-white fw-semibold">Menu</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Offcanvas: opens from the right, all links move here on small screens -->
+  <div class="offcanvas offcanvas-end cc-canvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title fw-bold" id="mobileMenuLabel">मेनू</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="cc-divider"></div>
+    <div class="offcanvas-body">
+      <div class="list-group">
+
+        <!-- Same links inside the slide-in menu -->
+        <a href="/" class="cc-link d-block">होम</a>
+
+        <!-- Dynamic part kept untouched -->
+        <% if (!currentUser) { %>
+          <a href="/register" class="cc-link d-block">Register</a>
+          <a href="/login" class="cc-link d-block">Login</a>
+        <% } else { %>
+          <a href="/logout" class="cc-link d-block">Logout</a>
+          <% if (currentUser.role === 'admin') { %>
+            <a href="/admin" class="cc-link d-block">Admin Panel</a>
+          <% } %>
+        <% } %>
+
+        
+        <a href="/villagers" class="cc-link d-block">गांववासी</a>
+        <a href="/community" class="cc-link d-block">संगठन</a>
+        <a href="/about" class="cc-link d-block">about</a>
+        <a href="#contact" class="cc-link d-block">संपर्क</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+ 
+
+    
