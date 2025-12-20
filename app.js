@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 8080;
+const port = process.env.Port || 8080;
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const path = require("path");
@@ -57,7 +57,8 @@ app.get("/", (req, res) => {
 });
 
 // Database connection
-mongoose.connect('mongodb://127.0.0.1:27017/villageWeb')
+const dbUrl = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/villageWeb";
+mongoose.connect(dbUrl)
   .then(() => console.log("Database connected successfully"))
   .catch(err => console.log(err));
 
