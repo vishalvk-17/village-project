@@ -57,10 +57,10 @@ app.get("/", (req, res) => {
 });
 
 // Database connection
-const dbUrl = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/villageWeb";
-mongoose.connect(dbUrl)
-  .then(() => console.log("Database connected successfully"))
+mongoose.connect(process.env.MONGODB_URL)
+  .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
+
 
 // Start server
 app.listen(port, () => {
