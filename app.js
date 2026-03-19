@@ -1,13 +1,34 @@
+const fs = require("fs");
+const path = require("path");
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 8080;
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
-const path = require("path");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
+
+const envPath = path.join(__dirname, ".env");
+if (fs.existsSync(envPath)) {
+  const envLines = fs.readFileSync(envPath, "utf8").split(/\r?\n/);
+  for (const line of envLines) {
+    const trimmedLine = line.trim();
+    if (!trimmedLine || trimmedLine.startsWith("#")) continue;
+
+    const separatorIndex = trimmedLine.indexOf("=");
+    if (separatorIndex === -1) continue;
+
+    const key = trimmedLine.slice(0, separatorIndex).trim();
+    const value = trimmedLine.slice(separatorIndex + 1).trim().replace(/^['"]|['"]$/g, "");
+
+    if (key && process.env[key] === undefined) {
+      process.env[key] = value;
+    }
+  }
+}
+
+const port = process.env.PORT || 8080;
 
 // Routes
 const villagerRoutes = require("./routes/villagers");
