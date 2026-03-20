@@ -63,9 +63,11 @@ const sessionConfig = {
   }
 };
 
-if (process.env.SESSION_STORE_URL) {
+const sessionStoreUrl = process.env.SESSION_STORE_URL || process.env.MONGODB_URL;
+
+if (sessionStoreUrl) {
   sessionConfig.store = MongoStore.create({
-    mongoUrl: process.env.SESSION_STORE_URL,
+    mongoUrl: sessionStoreUrl,
     collectionName: "sessions"
   });
 }
