@@ -15,13 +15,15 @@ const familySchema = new mongoose.Schema({
     },
     members: [{ // Villagers array
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Villager"
+        ref: "User"
     }],
-    // location: { // optional
-    //     lat: Number, lng: Number
-    // }
+    familyNote: {
+        type: String,
+        trim: true
+    }
 },{ timestamps:true });
 
+familySchema.index({ headName: 1 });
 familySchema.index({ 'address.village': 1 });
 
 

@@ -1,32 +1,63 @@
 <%- layout("/layouts/boilerplate") %>
-<body>
-    <h2>Edit Family Details</h2>
 
-    <form action="/families/<%= family._id %>?_method=PUT" method="POST">
-        <!-- Head Name -->
-        <label>Head Name:</label><br>
-        <input type="text" name="headName" value="<%= family.headName %>" required><br>
+<section class="family-form-page py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm family-form-card">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="mb-2">Edit Family Details</h2>
+          <p class="text-muted mb-4">Update household details and keep linked members current.</p>
 
-        <!-- Address -->
-        <h3>Address</h3>
-        <label>Line 1:</label><br>
-        <input type="text" name="address[line1]" value="<%= family.address.line1 %>"><br>
+          <form action="/families/<%= family._id %>?_method=PUT" method="POST">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Head Name</label>
+                <input class="form-control" type="text" name="headName" value="<%= family.headName %>" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Village</label>
+                <input class="form-control" type="text" name="address[village]" value="<%= family.address?.village || '' %>">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Address Line 1</label>
+                <input class="form-control" type="text" name="address[line1]" value="<%= family.address?.line1 || '' %>">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">District</label>
+                <input class="form-control" type="text" name="address[district]" value="<%= family.address?.district || '' %>">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">State</label>
+                <input class="form-control" type="text" name="address[state]" value="<%= family.address?.state || '' %>">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Pincode</label>
+                <input class="form-control" type="text" name="address[pincode]" value="<%= family.address?.pincode || '' %>">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Family Note</label>
+                <textarea class="form-control" name="familyNote" rows="3"><%= family.familyNote || "" %></textarea>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Linked Villagers</label>
+                <select name="members" multiple class="form-select family-member-select" size="6">
+                  <% for (let villager of villagers) { %>
+                    <option value="<%= villager._id %>" <%= family.members?.some(memberId => memberId.toString() === villager._id.toString()) ? "selected" : "" %>>
+                      <%= villager.name %> - <%= villager.profession || "Profession not added" %>
+                    </option>
+                  <% } %>
+                </select>
+                <div class="form-text">Hold Ctrl or Command to select multiple members.</div>
+              </div>
+            </div>
 
-        <label>Village:</label><br>
-        <input type="text" name="address[village]" value="<%= family.address.village %>"><br>
-
-        <label>District:</label><br>
-        <input type="text" name="address[district]" value="<%= family.address.district %>"><br>
-
-        <label>State:</label><br>
-        <input type="text" name="address[state]" value="<%= family.address.state %>"><br>
-
-        <label>Pincode:</label><br>
-        <input type="text" name="address[pincode]" value="<%= family.address.pincode %>"><br><br>
-
-        <button type="submit">Update Family</button>
-    </form>
-
-    <br>
-    <a href="/families/<%= family._id %>">⬅ Back to Family Info</a>
-</body>
+            <div class="d-flex gap-3 flex-wrap mt-4">
+              <button type="submit" class="btn btn-primary">Update Family</button>
+              <a href="/families/<%= family._id %>" class="btn btn-outline-secondary">Back to Family Info</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

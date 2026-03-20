@@ -8,6 +8,11 @@ const userSchema = new mongoose.Schema({
         trim: true 
     },
     age: Number,
+    gender: {
+        type: String,
+        enum: ["male", "female", "other"],
+        default: "other"
+    },
     email: { 
         type:String,
         required:true, 
@@ -15,25 +20,43 @@ const userSchema = new mongoose.Schema({
         lowercase:true, 
         trim:true 
     },
-    image: String,
+    phone: {
+        type: String,
+        trim: true
+    },
+    village: {
+        type: String,
+        trim: true,
+        default: "Bhilkheda"
+    },
+    profession: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    education: {
+        type: String,
+        trim: true
+    },
+    about: {
+        type: String,
+        trim: true
+    },
+    imageData: String,
+    imageType: String,
     password:{
         type:String, 
         required:true, 
         minlength:6 
         },
-    family: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Family",   // Reference to Family model
-        // required: true
-    },
-    villager: { // One-to-One link
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Villager"
-    },
     role:{ 
         type:String, 
         enum:['admin','viewer'], 
         default:'viewer' 
+    },
+    isApproved: {
+        type: Boolean,
+        default: false
     }
 },{ timestamps:true });
 

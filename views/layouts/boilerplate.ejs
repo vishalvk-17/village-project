@@ -17,9 +17,11 @@
         <%- include("../includes/homeHeroSec.ejs") %>
     <% } %>
 
-    <div class="container">
-        <%- include("../includes/flash.ejs") %>
-        <%- body %> 
+    <div class="page-shell">
+        <div class="container page-shell__container">
+            <%- include("../includes/flash.ejs") %>
+            <%- body %> 
+        </div>
     </div>
 
     <%- include("../includes/contectSection.ejs") %>

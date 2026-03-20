@@ -1,27 +1,61 @@
 <%- layout("/layouts/boilerplate") %>
-<body>
-    <h3>Create your family</h3>
-    <form method="post" action="/families">
-        <label>Head Name:</label><br>
-        <input placeholder="enter head name" name="headName" required>
-        <br><br>
 
-        <label>Address Line 1:</label><br>
-        <input type="text" name="address[line1]" placeholder="House No / Street">
-        <br><br>
+<section class="family-form-page py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm family-form-card">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="mb-2">Create Family</h2>
+          <p class="text-muted mb-4">Add a household record and optionally link existing villagers to it.</p>
 
-        <label>Village:</label><br>
-        <input type="text" name="address[village]" placeholder="Village Name">
-        <br><br>
+          <form method="post" action="/families">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Head Name</label>
+                <input class="form-control" placeholder="Enter family head name" name="headName" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Village</label>
+                <input class="form-control" type="text" name="address[village]" placeholder="Village name" value="Bhilkheda">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Address Line 1</label>
+                <input class="form-control" type="text" name="address[line1]" placeholder="House no / street / mohalla">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">District</label>
+                <input class="form-control" type="text" name="address[district]" placeholder="District">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">State</label>
+                <input class="form-control" type="text" name="address[state]" placeholder="State">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Pincode</label>
+                <input class="form-control" type="text" name="address[pincode]" placeholder="Pincode">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Family Note</label>
+                <textarea class="form-control" name="familyNote" rows="3" placeholder="Short note about the family, background, or identity"></textarea>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Link Villagers</label>
+                <select name="members" multiple class="form-select family-member-select" size="6">
+                  <% for (let villager of villagers) { %>
+                    <option value="<%= villager._id %>"><%= villager.name %> - <%= villager.profession || "Profession not added" %></option>
+                  <% } %>
+                </select>
+                <div class="form-text">Hold Ctrl or Command to select multiple members.</div>
+              </div>
+            </div>
 
-        <label>District:</label><br>
-        <input type="text" name="address[district]" placeholder="District">
-        <br><br>
-
-        <label>Pincode:</label><br>
-        <input type="text" name="address[pincode]" placeholder="Pincode">
-        <br>
-        <button>Add Family</button>
-        <br><br>
-    </form>
-</body>
+            <div class="d-flex gap-3 flex-wrap mt-4">
+              <button class="btn btn-primary">Add Family</button>
+              <a href="/families" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

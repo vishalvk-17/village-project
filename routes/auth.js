@@ -29,7 +29,11 @@ router.post("/login", async (req, res) => {
       name: user.name,
       role: user.role
     };
-    req.flash("success", "You have logged in successfully");
+    if (user.isApproved === false && user.role !== "admin") {
+      req.flash("success", "You have logged in successfully. Your profile is waiting for admin approval.");
+    } else {
+      req.flash("success", "You have logged in successfully");
+    }
     res.redirect(`/${user._id}`);
   } catch (err) {
     console.error(err);

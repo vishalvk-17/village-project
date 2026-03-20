@@ -1,11 +1,15 @@
 <% if(success && success.length) { %>
-    <div class="alert alert-success col-7 offset-3">
-        <%= success[0] %>
+    <div class="flash-wrap">
+        <div class="alert alert-success flash-alert">
+            <%= success[0] %>
+        </div>
     </div>
 <% } %>
 
-<!-- <% if (error && error.length > 0) { %>
-  <div class="alert alert-danger col-7 offset-3">
-    <%= error[0] %>
+<% if (error && error.length > 0) { %>
+  <div class="flash-wrap">
+    <div class="alert alert-danger flash-alert">
+      <%= error[0] %>
+    </div>
   </div>
-<% } %> -->
+<% } %>

@@ -1,0 +1,136 @@
+<%- layout("/layouts/boilerplate") %>
+
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold text-primary">Admin Dashboard</h1>
+    <p class="text-muted mb-0">Yahan se tum notices, gaon ke sitare, aur pending villagers manage kar sakte ho.</p>
+  </div>
+
+  <div class="row g-4 mb-5">
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h4 class="mb-3">Add Notice</h4>
+          <form action="/admin/notices" method="POST">
+            <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input type="text" name="title" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea name="description" rows="4" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Bootstrap Icon Class</label>
+              <input type="text" name="iconClass" class="form-control" placeholder="bi bi-megaphone text-primary">
+            </div>
+            <button class="btn btn-primary">Save Notice</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h4 class="mb-3">Add Village Star</h4>
+          <form action="/admin/stars" method="POST">
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input type="text" name="name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input type="text" name="title" class="form-control" placeholder="NSG Commando, Teacher, Doctor..." required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea name="description" rows="4" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Image URL</label>
+              <input type="text" name="imageUrl" class="form-control" placeholder="https://...">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Accent Class</label>
+              <input type="text" name="accentClass" class="form-control" placeholder="text-success">
+            </div>
+            <button class="btn btn-success">Save Star</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h4 class="mb-3">Pending Villagers</h4>
+          <% if (pendingVillagers.length === 0) { %>
+            <p class="text-muted mb-0">No pending profiles right now.</p>
+          <% } else { %>
+            <% for (let villager of pendingVillagers) { %>
+              <div class="border rounded-3 p-3 mb-3">
+                <h6 class="mb-1"><%= villager.name %></h6>
+                <p class="small text-muted mb-2"><%= villager.profession || "Profession not added" %></p>
+                <form action="/<%= villager._id %>/approve" method="POST">
+                  <button class="btn btn-sm btn-primary">Approve</button>
+                </form>
+              </div>
+            <% } %>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h4 class="mb-3">Saved Notices</h4>
+          <% if (notices.length === 0) { %>
+            <p class="text-muted mb-0">No notices added yet.</p>
+          <% } else { %>
+            <% for (let notice of notices) { %>
+              <div class="border rounded-3 p-3 mb-3">
+                <h6 class="mb-1"><%= notice.title %></h6>
+                <p class="small text-muted mb-2"><%= notice.description %></p>
+                <div class="d-flex gap-2 flex-wrap">
+                  <a href="/admin/notices/<%= notice._id %>/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                  <form action="/admin/notices/<%= notice._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                  </form>
+                </div>
+              </div>
+            <% } %>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h4 class="mb-3">Village Stars</h4>
+          <% if (stars.length === 0) { %>
+            <p class="text-muted mb-0">No stars added yet.</p>
+          <% } else { %>
+            <% for (let star of stars) { %>
+              <div class="border rounded-3 p-3 mb-3">
+                <h6 class="mb-1"><%= star.name %></h6>
+                <p class="small text-muted mb-1"><%= star.title %></p>
+                <p class="small text-muted mb-2"><%= star.description.length > 70 ? `${star.description.slice(0, 70)}...` : star.description %></p>
+                <div class="d-flex gap-2 flex-wrap">
+                  <a href="/admin/stars/<%= star._id %>/edit" class="btn btn-sm btn-outline-success">Edit</a>
+                  <form action="/admin/stars/<%= star._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                  </form>
+                </div>
+              </div>
+            <% } %>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,6 +35,11 @@ const villagerRoutes = require("./routes/villagers");
 const familyRoutes = require("./routes/families");
 const pageRoutes = require("./routes/navbar.js");
 const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin");
+const Notice = require("./models/notice");
+const Star = require("./models/star");
+
+let isMongoConnected = false;
 
 // View engine
 app.set("view engine", "ejs");
@@ -43,6 +48,7 @@ app.engine("ejs", ejsMate);
 
 // Middleware
 app.use(express.static(path.join(__dirname, "public")));
+app.get("/favicon.ico", (req, res) => res.status(204).end());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
@@ -74,21 +80,41 @@ app.use((req, res, next) => {
 // Routes
 app.use("/", pageRoutes);       // About, Community
 app.use("/", authRoutes);       // Login, Logout
-app.use("/", villagerRoutes);
 app.use("/families", familyRoutes);
+app.use("/", villagerRoutes);
+app.use("/", adminRoutes);
 
 // Home route
-app.get("/", (req, res) => {
-  res.render("villages/home.ejs", { showHero: true });
+app.get("/", async (req, res) => {
+  try {
+    const notices = isMongoConnected
+      ? await Notice.find({}).sort({ createdAt: -1 }).limit(5)
+      : [];
+    const stars = isMongoConnected
+      ? await Star.find({}).sort({ createdAt: -1 }).limit(6)
+      : [];
+
+    res.render("villages/home.ejs", { showHero: true, notices, stars });
+  } catch (err) {
+    console.error("Home page data load failed:", err);
+    res.render("villages/home.ejs", { showHero: true, notices: [], stars: [] });
+  }
 });
 
 // Database connection
 mongoose.connect(process.env.MONGODB_URL)
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.log(err));
+  .then(() => {
+    isMongoConnected = true;
+    console.log("MongoDB connected");
+  })
+  .catch(err => {
+    isMongoConnected = false;
+    console.log("MongoDB connection failed:", err);
+  });
 
 
 // Start server
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
+

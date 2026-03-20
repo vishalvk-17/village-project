@@ -1,160 +1,116 @@
-<head> 
-  <style>
-    /* Attractive gradient navbar */
-    .cc-navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1040;
-      background: linear-gradient(90deg, #7c3aed, #2563eb);
-      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1);
-    }
-
-    .cc-brand {
-      color: #fff;
-      font-weight: 800;
-      letter-spacing: .3px;
-      text-shadow: 0 1px 0 rgba(0,0,0,.15);
-    }
-
-    .cc-link {
-      color: #fff;
-      font-weight: 600;
-      border-radius: .5rem;
-      padding: .5rem .75rem;
-      text-decoration: none;
-      transition: .25s ease;
-    }
-    .cc-link:hover,
-    .cc-link:focus {
-      background: rgba(255,255,255,.18);
-      color: #fff;
-    }
-
-    /* Toggler look on gradient */
-    .navbar-toggler {
-      border-color: rgba(255,255,255,.55);
-      color: #fff;
-    }
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 .15rem rgba(255,255,255,.35);
-    }
-
-    /* Offcanvas styling to match navbar */
-    .offcanvas.cc-canvas {
-      background: linear-gradient(135deg, rgba(124,58,237,0.98), rgba(37,99,235,0.98));
-      color: #fff;
-      border-left: 0;
-    }
-    .offcanvas-header .btn-close {
-      filter: invert(1) grayscale(100%) brightness(200%);
-      opacity: .9;
-    }
-    .cc-canvas .list-group-item {
-      background: transparent;
-      border: 0;
-      padding: .5rem 0;
-    }
-
-    /* Subtle divider line inside canvas */
-    .cc-divider {
-      height: 1px;
-      background: rgba(255,255,255,.2);
-      margin: .25rem 0 .75rem 0;
-    }
-
-    /* Layout container width similar to your original */
-    .cc-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 .75rem;
-      width: 100%;
-    }
-  </style>
-</head>
-
-  <!-- Navbar -->
+<header class="cc-nav-shell">
   <nav class="cc-navbar navbar navbar-expand-lg">
     <div class="cc-container">
-      <div class="d-flex align-items-center justify-content-between w-100" style="height: 4rem;">
-        <!-- Brand -->
-        <a class="navbar-brand m-0 cc-brand d-flex align-items-center gap-2" href="/" aria-label="Home">
-          <span style="font-size: 1.35rem;">🏘️</span>
-          <span class="fs-4">भिलखेड़ा गांव</span>
+      <div class="cc-navbar__panel">
+        <a class="navbar-brand cc-brand d-flex align-items-center gap-3 m-0" href="/" aria-label="Home">
+          <span class="cc-brand__crest">
+            <i class="bi bi-buildings-fill"></i>
+          </span>
+          <span>
+            <span class="cc-brand__eyebrow">Village Portal</span>
+            <span class="cc-brand__title">भिलखेड़ा गांव</span>
+          </span>
         </a>
 
-        <!-- Right side: inline links for large screens + toggler for small screens -->
-        <div class="d-none d-lg-flex align-items-center gap-1">
-          <!-- Inline links (large screens) -->
-          <nav class="d-flex align-items-center gap-1">
+        <div class="d-none d-lg-flex align-items-center gap-3">
+          <div class="cc-nav-links">
             <a href="/" class="cc-link">होम</a>
-
-            <!-- Dynamic section kept as-is (server fills this) -->
-            <% if (!currentUser) { %>
-              <a href="/register" class="cc-link">Register</a>
-              <a href="/login" class="cc-link">Login</a>
-            <% } else { %>
-              <a href="/logout" class="cc-link">Logout</a>
-              <% if (currentUser.role === 'admin') { %>
-                <a href="/admin" class="cc-link">Admin Panel</a>
-              <% } %>
-            <% } %>
-
             <a href="/villagers" class="cc-link">गांववासी</a>
+            <a href="/families" class="cc-link">Families</a>
             <a href="/community" class="cc-link">संगठन</a>
-            <a href="/about" class="cc-link">about</a>
+            <a href="/about" class="cc-link">About</a>
             <a href="#contact" class="cc-link">संपर्क</a>
-          </nav>
+          </div>
+
+          <div class="cc-nav-actions">
+            <% if (!currentUser) { %>
+              <a href="/register" class="cc-action-btn cc-action-btn--ghost">Register</a>
+              <a href="/login" class="cc-action-btn cc-action-btn--solid">Login</a>
+            <% } else { %>
+              <div class="cc-user-chip">
+                <span class="cc-user-chip__dot"></span>
+                <span><%= currentUser.role === "admin" ? "Admin" : "Member" %></span>
+              </div>
+              <% if (currentUser.role === "admin") { %>
+                <a href="/admin" class="cc-action-btn cc-action-btn--ghost">Admin Panel</a>
+              <% } %>
+              <a href="/logout" class="cc-action-btn cc-action-btn--solid">Logout</a>
+            <% } %>
+          </div>
         </div>
 
-        <!-- Toggler (always visible on small screens) -->
-        <button class="navbar-toggler d-lg-none d-inline-flex align-items-center gap-2" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu"
-                aria-label="Open menu">
-          <!-- Hamburger icon -->
-          <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <span class="text-white fw-semibold">Menu</span>
+        <button
+          class="navbar-toggler cc-menu-toggle d-lg-none"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#mobileMenu"
+          aria-controls="mobileMenu"
+          aria-label="Open menu"
+        >
+          <i class="bi bi-list"></i>
         </button>
       </div>
     </div>
   </nav>
+</header>
 
-  <!-- Offcanvas: opens from the right, all links move here on small screens -->
-  <div class="offcanvas offcanvas-end cc-canvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title fw-bold" id="mobileMenuLabel">मेनू</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<div class="offcanvas offcanvas-end cc-canvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+  <div class="offcanvas-header align-items-start">
+    <div>
+      <p class="cc-offcanvas__eyebrow mb-1">Navigation</p>
+      <h5 class="offcanvas-title fw-semibold mb-0" id="mobileMenuLabel">भिलखेड़ा गांव</h5>
     </div>
-    <div class="cc-divider"></div>
-    <div class="offcanvas-body">
-      <div class="list-group">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
 
-        <!-- Same links inside the slide-in menu -->
-        <a href="/" class="cc-link d-block">होम</a>
-
-        <!-- Dynamic part kept untouched -->
-        <% if (!currentUser) { %>
-          <a href="/register" class="cc-link d-block">Register</a>
-          <a href="/login" class="cc-link d-block">Login</a>
-        <% } else { %>
-          <a href="/logout" class="cc-link d-block">Logout</a>
-          <% if (currentUser.role === 'admin') { %>
-            <a href="/admin" class="cc-link d-block">Admin Panel</a>
-          <% } %>
-        <% } %>
-
-        
-        <a href="/villagers" class="cc-link d-block">गांववासी</a>
-        <a href="/community" class="cc-link d-block">संगठन</a>
-        <a href="/about" class="cc-link d-block">about</a>
-        <a href="#contact" class="cc-link d-block">संपर्क</a>
+  <div class="offcanvas-body pt-0">
+    <% if (currentUser) { %>
+      <div class="cc-mobile-user mb-4">
+        <span class="cc-user-chip__dot"></span>
+        <div>
+          <strong class="d-block"><%= currentUser.role === "admin" ? "Admin Account" : "Community Member" %></strong>
+          <small><%= currentUser.role === "admin" ? "Manage notices, stars and approvals" : "Browse village people and families" %></small>
+        </div>
       </div>
+    <% } %>
+
+    <div class="cc-mobile-links">
+      <a href="/" class="cc-mobile-link">
+        <span>होम</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+      <a href="/villagers" class="cc-mobile-link">
+        <span>गांववासी</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+      <a href="/families" class="cc-mobile-link">
+        <span>Families</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+      <a href="/community" class="cc-mobile-link">
+        <span>संगठन</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+      <a href="/about" class="cc-mobile-link">
+        <span>About</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+      <a href="#contact" class="cc-mobile-link">
+        <span>संपर्क</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+    </div>
+
+    <div class="cc-mobile-actions">
+      <% if (!currentUser) { %>
+        <a href="/register" class="cc-action-btn cc-action-btn--ghost w-100 text-center">Register</a>
+        <a href="/login" class="cc-action-btn cc-action-btn--solid w-100 text-center">Login</a>
+      <% } else { %>
+        <% if (currentUser.role === "admin") { %>
+          <a href="/admin" class="cc-action-btn cc-action-btn--ghost w-100 text-center">Admin Panel</a>
+        <% } %>
+        <a href="/logout" class="cc-action-btn cc-action-btn--solid w-100 text-center">Logout</a>
+      <% } %>
     </div>
   </div>
-</main>
-
- 
-
-    
+</div>

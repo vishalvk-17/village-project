@@ -1,28 +1,77 @@
 <%- layout("/layouts/boilerplate") %>
-<!-- New style -->
+
 <div class="container my-5">
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h3 class="text-center mb-4">User Information</h3>
-      <div class="card shadow-lg border-0 rounded-3">
-        
-        <!-- Profile Image -->
-        <div class="text-center mt-4">
-          <img src="/uploads/<%= user.image %>" 
-               class="rounded-circle img-fluid shadow-sm" 
-               alt="user-img"
-               style="width: 150px; height: 150px; object-fit: cover;">
-        </div>
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        <div class="card-body p-4 p-md-5">
+          <div class="text-center">
+            <img
+              src="<%= user.imageData ? `data:${user.imageType};base64,${user.imageData}` : 'https://placehold.co/180x180?text=User' %>"
+              class="rounded-circle img-fluid shadow-sm mb-3"
+              alt="user-img"
+              style="width: 180px; height: 180px; object-fit: cover;"
+            >
+            <h3 class="mb-1"><%= user.name %></h3>
+            <p class="text-primary fw-semibold mb-3"><%= user.profession || "Profession not added" %></p>
+            <% if (user.isApproved === false) { %>
+              <span class="badge text-bg-warning mb-4">Waiting For Admin Approval</span>
+            <% } %>
+          </div>
 
-        <div class="card-body text-center">
-          <!-- User Info -->
-          <h5 class="card-title mt-3"><%= user.name %></h5>
-          <p class="text-muted mb-1">Age: <%= user.age %></p>
-          <p class="text-muted">Email: <%= user.email %></p>
+          <div class="row g-3 villager-profile-details">
+            <div class="col-md-6">
+              <div class="profile-detail-box">
+                <span>Age</span>
+                <strong><%= user.age || "N/A" %></strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="profile-detail-box">
+                <span>Gender</span>
+                <strong><%= user.gender || "N/A" %></strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="profile-detail-box">
+                <span>Email</span>
+                <strong><%= currentUser && (currentUser.role === "admin" || currentUser.id === user._id.toString()) ? user.email : "Private for public visitors" %></strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="profile-detail-box">
+                <span>Phone</span>
+                <strong><%= currentUser && (currentUser.role === "admin" || currentUser.id === user._id.toString()) ? (user.phone || "N/A") : "Private for public visitors" %></strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="profile-detail-box">
+                <span>Village</span>
+                <strong><%= user.village || "Bhilkheda" %></strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="profile-detail-box">
+                <span>Education</span>
+                <strong><%= user.education || "N/A" %></strong>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="profile-detail-box">
+                <span>About</span>
+                <strong><%= user.about || "No additional details added yet." %></strong>
+              </div>
+            </div>
+          </div>
 
-          <!-- Buttons -->
-          <div class="d-flex justify-content-center gap-3 mt-4">
-            <% if (currentUser && (currentUser.role === 'admin' || currentUser.id === user._id.toString())) { %>
+          <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+            <% if (currentUser && currentUser.role === "admin" && user.isApproved === false) { %>
+              <form action="/<%= user._id %>/approve" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-success">Approve Profile</button>
+              </form>
+            <% } %>
+
+            <% if (currentUser && (currentUser.role === "admin" || currentUser.id === user._id.toString())) { %>
               <a href="/<%= user._id %>/edit" class="btn btn-primary">Update</a>
 
               <form action="/<%= user._id %>?_method=DELETE" method="POST" style="display:inline;">
@@ -35,50 +84,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-<!-- old style -->
-<!-- <div class="row">
-    <div class="col-5 offset-4 mt-2" >
-        <h3>Information of users: </h3>
-        <div class="card" style="width: 18rem;">
-            <img src="/uploads/<%= user.image %>"  class="card-img-top" alt="user-img">
-            <div class="card-body">
-                
-                <p>Name: <%= user.name %></p>
-                <p>Age: <%= user.age %></p>
-                <p>Email: <%= user.email %></p>
-                <a href="/users/<%= user.id %>/edit">update</a><br><br>
-                
-                <form method="post" action="/users/<%= user.id %>/delete?_method=delete">
-                    <button>Delete information</button>
-                </form>  
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-
-
-
-
-
-
-        <!-- <form method="get" action="/families/new">
-            <button>Add family</button>
-        </form> 
-        <br>
-        <% if (user.family) { %>
-        <form method="get" action="/families/<%= user.family %>">
-            <button>View your family</button>
-        </form>
-        <% } else { %>
-            <p>No family linked</p>
-        <% } %> -->
-

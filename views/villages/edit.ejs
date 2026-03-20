@@ -1,63 +1,90 @@
 <%- layout("/layouts/boilerplate") %>
 
-<!-- New design -->
-
 <div class="container my-5">
   <div class="row justify-content-center">
-    <div class="col-lg-6">
+    <div class="col-xl-9 col-lg-10">
       <div class="card shadow-lg border-0 rounded-4">
-        <div class="card-body p-4">
-          <h3 class="text-center mb-4 fw-bold text-primary">
-            Update Your Information
-          </h3>
-          <hr>
+        <div class="card-body p-4 p-md-5">
+          <h3 class="text-center mb-3 fw-bold text-primary">Update Your Profile</h3>
+          <p class="text-center text-muted mb-4">Keep your villager profile up to date so people can know your work and details.</p>
 
-          <!-- Profile Image Preview (optional) -->
-          <% if(user.image && user.image.url) { %>
+          <% if(user.imageData) { %>
             <div class="text-center mb-4">
-              <img src="<%= user.image.url %>" alt="Profile Image" 
-                   class="rounded-circle shadow" 
-                   width="120" height="120"
-                   style="object-fit: cover;">
+              <img
+                src="data:<%= user.imageType %>;base64,<%= user.imageData %>"
+                alt="Profile Image"
+                class="rounded-circle shadow"
+                width="120"
+                height="120"
+                style="object-fit: cover;"
+              >
             </div>
           <% } %>
 
-          <!-- Update Form -->
           <form method="POST" action="/<%= user._id %>?_method=PUT" enctype="multipart/form-data">
-            <div class="mb-3">
-              <label for="name" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="name" name="name" 
-                     placeholder="Enter your name" value="<%= user.name %>">
-            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= user.name %>">
+              </div>
 
-            <div class="mb-3">
-              <label for="age" class="form-label">Age</label>
-              <input type="number" class="form-control" id="age" name="age" 
-                     placeholder="Enter your age" value="<%= user.age %>">
-            </div>
+              <div class="col-md-3">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" class="form-control" id="age" name="age" value="<%= user.age %>">
+              </div>
 
-            <div class="mb-3">
-              <label for="email" class="form-label">Email Address</label>
-              <input type="email" class="form-control" id="email" name="email" 
-                     placeholder="Enter your email" value="<%= user.email %>">
-            </div>
+              <div class="col-md-3">
+                <label for="gender" class="form-label">Gender</label>
+                <select id="gender" name="gender" class="form-select">
+                  <option value="male" <%= user.gender === "male" ? "selected" : "" %>>Male</option>
+                  <option value="female" <%= user.gender === "female" ? "selected" : "" %>>Female</option>
+                  <option value="other" <%= user.gender === "other" ? "selected" : "" %>>Other</option>
+                </select>
+              </div>
 
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" 
-                     name="password" placeholder="Update password">
-              <small class="text-muted">Leave blank if you don’t want to change it</small>
-            </div>
+              <div class="col-md-6">
+                <label for="profession" class="form-label">Profession</label>
+                <input type="text" class="form-control" id="profession" name="profession" value="<%= user.profession || '' %>">
+              </div>
 
-            <div class="mb-3">
-              <label for="image" class="form-label">Profile Image</label>
-              <input type="file" class="form-control" id="image" name="image" accept="image/*">
+              <div class="col-md-6">
+                <label for="education" class="form-label">Education</label>
+                <input type="text" class="form-control" id="education" name="education" value="<%= user.education || '' %>">
+              </div>
+
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
+              </div>
+
+              <div class="col-md-6">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" value="<%= user.phone || '' %>">
+              </div>
+
+              <div class="col-md-6">
+                <label for="village" class="form-label">Village</label>
+                <input type="text" class="form-control" id="village" name="village" value="<%= user.village || 'Bhilkheda' %>">
+              </div>
+
+              <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Leave blank to keep current password">
+              </div>
+
+              <div class="col-12">
+                <label for="about" class="form-label">About</label>
+                <textarea id="about" name="about" class="form-control" rows="4"><%= user.about || '' %></textarea>
+              </div>
+
+              <div class="col-12">
+                <label for="image" class="form-label">Profile Image</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*">
+              </div>
             </div>
 
             <div class="d-grid mt-4">
-              <button type="submit" class="btn btn-primary btn-lg">
-                Update Information
-              </button>
+              <button type="submit" class="btn btn-primary btn-lg">Update Profile</button>
             </div>
           </form>
         </div>
@@ -65,37 +92,3 @@
     </div>
   </div>
 </div>
-
-
-
-<!-- Old Style -->
-<!-- <div class="row">
-    <div class="col-5 offset-3 mt-2" >
-        <h3>Update Your Information : </h3><hr>
-        <form method="post"  action="/users/<%= user._id %>/edit?_method=put" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="name" class="form-lable">Name: </label>
-                <input placeholder="<%= user.name %>" name="name" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="age" class="form-lable">Age: </label>
-                <input type="number" placeholder="<%= user.age %>" name="age" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-lable">Email: </label>
-                <input placeholder="<%= user.email %>" name="email" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-lable">Password: </label>
-                <input type="password" placeholder="update password" name="password" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-lable">Image:</label>
-                <h4>update your photo:</h4>
-                <input type="file" name="image" accept="image/*" class="form-control">
-            </div>
-            
-            <button class="btn btn-dark">submit</button>
-        </form>
-    </div>
-</div> -->

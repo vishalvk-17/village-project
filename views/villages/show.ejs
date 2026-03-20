@@ -1,67 +1,91 @@
 <%- layout("/layouts/boilerplate") %>
 
-
-<%- layout("/layouts/boilerplate") %>
-
-<body class="bg-light">
-  <div class="container py-5">
-    <h2 class="text-center mb-4">All Villagers</h2>
-
-    <% if (users.length === 0) { %>
-      <div class="alert alert-warning text-center">
-        No villagers found. Please add a new villager.
-      </div>
-    <% } else { %>
-      <ul class="list-group shadow">
-        <% for (let user of users) { %>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <a href="/<%= user._id %>" class="text-decoration-none fw-bold text-primary">
-              <%= user.name %>
-            </a>
-            <span class="badge bg-secondary rounded-pill">
-              Age: <%= user.age %>
-            </span>
-          </li>
-        <% } %>
-      </ul>
-    <% } %>
-
-    <!-- <div class="text-center mt-4">
-      <a href="/addUser" class="btn btn-success">
-        ➕ Add Villager
-      </a>
-    </div> -->
+<section class="villagers-directory py-5">
+  <div class="text-center mb-5">
+    <h2 class="mb-2">Village People Directory</h2>
+    <p class="text-muted mb-0">See the people of the village, what they do, and learn a little about them.</p>
   </div>
-</body>
 
+  <form action="/villagers" method="GET" class="card border-0 shadow-sm p-3 p-md-4 mb-4 villager-filter-form">
+    <div class="row g-3 align-items-end">
+      <div class="col-md-6">
+        <label for="search" class="form-label">Search Villagers</label>
+        <input
+          type="text"
+          id="search"
+          name="search"
+          value="<%= search || '' %>"
+          class="form-control"
+          placeholder="Search by name, village or profession"
+        >
+      </div>
 
+      <div class="col-md-4">
+        <label for="profession" class="form-label">Filter by Profession</label>
+        <select id="profession" name="profession" class="form-select">
+          <option value="">All professions</option>
+          <% for (let item of professions) { %>
+            <option value="<%= item %>" <%= profession === item ? "selected" : "" %>><%= item %></option>
+          <% } %>
+        </select>
+      </div>
 
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-primary">Apply</button>
+      </div>
+    </div>
+  </form>
 
+  <% if (users.length === 0) { %>
+    <div class="alert alert-warning text-center shadow-sm">
+      No villagers found for this search. Try another name or profession.
+    </div>
+  <% } else { %>
+    <div class="row g-4">
+      <% for (let user of users) { %>
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 border-0 shadow villager-card">
+            <div class="card-body p-4 text-center">
+              <img
+                src="<%= user.imageData ? `data:${user.imageType};base64,${user.imageData}` : 'https://placehold.co/160x160?text=User' %>"
+                alt="<%= user.name %>"
+                class="villager-card__avatar mx-auto mb-3"
+              >
+              <h4 class="mb-1"><%= user.name %></h4>
+              <p class="villager-card__profession mb-2"><%= user.profession || "Profession not added" %></p>
 
+              <% if (currentUser && currentUser.role === "admin" && user.isApproved === false) { %>
+                <span class="badge text-bg-warning mb-3">Pending Approval</span>
+              <% } %>
 
+              <div class="villager-card__meta text-start">
+                <p><strong>Age:</strong> <%= user.age || "N/A" %></p>
+                <p><strong>Village:</strong> <%= user.village || "Bhilkheda" %></p>
+                <p><strong>Education:</strong> <%= user.education || "N/A" %></p>
+                <% if (currentUser && (currentUser.role === "admin" || currentUser.id === user._id.toString())) { %>
+                  <p><strong>Email:</strong> <%= user.email %></p>
+                  <p><strong>Phone:</strong> <%= user.phone || "N/A" %></p>
+                <% } else { %>
+                  <p class="text-muted small mb-0">Phone and email are private for public visitors.</p>
+                <% } %>
+              </div>
 
+              <% if (user.about) { %>
+                <p class="text-muted small mt-3 mb-4"><%= user.about.length > 120 ? `${user.about.slice(0, 120)}...` : user.about %></p>
+              <% } %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <body>
-    <h3>All Users</h3>
-    <% for(user of users) { %>
-        <ul>
-            <li><a href="/users/<%= user._id %>"><%= user.name %></a></li>
-        </ul>
-    <% } %>
-    <form method="get" action="/addUser" enctype="multipart/form-data">
-        <button>Add user</button>
-    </form>
-    
-</body> -->
+              <div class="d-grid gap-2">
+                <a href="/<%= user._id %>" class="btn btn-outline-primary w-100">View Full Profile</a>
+                <% if (currentUser && currentUser.role === "admin" && user.isApproved === false) { %>
+                  <form action="/<%= user._id %>/approve" method="POST">
+                    <button class="btn btn-success w-100" type="submit">Approve Profile</button>
+                  </form>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  <% } %>
+</section>

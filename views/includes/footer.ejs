@@ -1,291 +1,81 @@
-<!-- Contact Section
-    <section id="contact" class="contact-section">
-        <div class="container-lg">
-            <div class="section-header">
-                <h2 class="section-title">संपर्क करें</h2>
-                <p class="section-subtitle">किसी भी सहायता के लिए हमसे संपर्क करें</p>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>संपर्क जानकारी</h3>
-                    <div class="space-y-4">
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div>
-                                <div class="contact-label">पता</div>
-                                <div class="contact-value">भिलखेड़ा गांव, जिला, राज्य</div>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div>
-                                <div class="contact-label">फोन</div>
-                                <div class="contact-value">+91 98765 43210</div>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">✉️</div>
-                            <div>
-                                <div class="contact-label">ईमेल</div>
-                                <div class="contact-value">info@bhilkheda.gov.in</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>संदेश भेजें</h3>
-                    <form class="space-y-4">
-                        <input type="text" placeholder="आपका नाम" class="form-input">
-                        <input type="email" placeholder="ईमेल पता" class="form-input">
-                        <textarea placeholder="आपका संदेश" rows="4" class="form-textarea"></textarea>
-                        <button type="submit" class="btn btn-gradient btn-full">
-                            संदेश भेजें
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section> -->
+<footer class="site-footer">
+  <div class="site-footer__glow"></div>
+  <div class="container site-footer__container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <span class="site-footer__badge">
+          <i class="bi bi-buildings-fill"></i>
+          Village Digital Portal
+        </span>
+        <h2 class="site-footer__title">भिलखेड़ा गांव को digitally connected aur better organized banane ki ek shuruaat</h2>
+        <p class="site-footer__text">
+          Profiles, families, notices aur village highlights ko ek modern portal mein laakar community ko stronger,
+          visible aur accessible banana hi is platform ka core goal hai.
+        </p>
 
-
-
-<!-- Footer -->
-    <!-- <footer class="gradient-bg footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>🏘️ भिलखेड़ा गांव</h3>
-                    <p>हमारा डिजिटल पोर्टल गांव के विकास और सभी निवासियों को जोड़ने का काम करता है।</p>
-                    <div class="footer-social">
-                        <a href="#">📘</a>
-                        <a href="#">📷</a>
-                        <a href="#">🐦</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>त्वरित लिंक</h4>
-                    <ul class="footer-links space-y-2">
-                        <li><a href="#home">होम</a></li>
-                        <li><a href="#register">रजिस्ट्रेशन</a></li>
-                        <li><a href="#villagers">गांववासी</a></li>
-                        <li><a href="#services">सेवाएं</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>सहायता</h4>
-                    <ul class="footer-links space-y-2">
-                        <li><a href="#contact">संपर्क</a></li>
-                        <li><a href="#">सहायता केंद्र</a></li>
-                        <li><a href="#">नियम</a></li>
-                        <li><a href="#">गोपनीयता</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 भिलखेड़ा गांव डिजिटल पोर्टल। सभी अधिकार सुरक्षित।</p>
-            </div>
-        </div>
-    </footer> -->
-
-<style>
-    /* new footer desing */
-
-    /* Gradient Background (matches navbar) */
-    .gradient-bg {
-      background: linear-gradient(to right, #7c3aed, #2563eb);
-      color: #fff;
-    }
-
-    /* Footer Base */
-    .footer {
-      padding: 50px 20px 20px;
-      margin-top: 40px;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    /* Container */
-    .footer .container {
-      max-width: 1280px;
-      margin: auto;
-    }
-
-    /* Grid Layout */
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 36px 28px;
-      align-items: start;
-    }
-
-    /* Brand */
-    .footer-brand h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .footer-brand p {
-      font-size: 15px;
-      line-height: 1.75;
-      margin-bottom: 16px;
-      opacity: 0.95;
-    }
-
-    .footer-social a {
-      font-size: 18px;
-      margin-right: 10px;
-      text-decoration: none;
-      transition: 0.3s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-    }
-
-    .footer-social a:hover {
-      opacity: 0.9;
-      background: rgba(255,255,255,0.25);
-    }
-
-    /* Sections */
-    .footer-section h4 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      border-bottom: 2px solid rgba(255,255,255,0.3);
-      display: inline-block;
-      padding-bottom: 5px;
-    }
-
-    .footer-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-      color: #fff;
-      font-size: 14px;
-      transition: 0.3s;
-    }
-
-    .footer-links a:hover {
-      color: #ffde59;
-    }
-
-    /* Bottom */
-    .footer-bottom {
-      text-align: center;
-      font-size: 14px;
-      margin-top: 30px;
-      padding-top: 15px;
-      border-top: 1px solid rgba(255,255,255,0.3);
-      opacity: 0.95;
-    }
-
-    /* Responsive polish (kept your design intact) */
-    @media (max-width: 576px) {
-      .footer {
-        padding: 32px 14px 14px;
-      }
-
-      .footer-brand,
-      .footer-section,
-      .footer-bottom {
-        text-align: center;
-      }
-
-      .footer-grid {
-        gap: 22px 16px;
-      }
-
-      .footer-social {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .footer-brand h3 {
-        font-size: 19px;
-      }
-
-      .footer-brand p {
-        font-size: 13.5px;
-      }
-
-      .footer-links a {
-        display: inline-block;
-        padding: 6px 8px;
-      }
-    }
-
-    @media (min-width: 768px) and (max-width: 991.98px) {
-      .footer-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 28px 22px;
-      }
-    }
-
-    @media (min-width: 992px) {
-      .footer {
-        padding-top: 60px;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1.25fr 1fr 1fr;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Footer -->
-  <footer class="gradient-bg footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <h3>🏘️ भिलखेड़ा गांव</h3>
-          <p>हमारा डिजिटल पोर्टल गांव के विकास और सभी निवासियों को जोड़ने का काम करता है।</p>
-          <div class="footer-social">
-            <a href="#" aria-label="Facebook">📘</a>
-            <a href="#" aria-label="Instagram">📷</a>
-            <a href="#" aria-label="Twitter / X">🐦</a>
-          </div>
-        </div>
-
-        <div class="footer-section">
-          <h4>त्वरित लिंक</h4>
-          <ul class="footer-links space-y-2">
-            <li><a href="#home">होम</a></li>
-            <li><a href="#register">रजिस्ट्रेशन</a></li>
-            <li><a href="#villagers">गांववासी</a></li>
-            <li><a href="#services">सेवाएं</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h4>सहायता</h4>
-          <ul class="footer-links space-y-2">
-            <li><a href="#contact">संपर्क</a></li>
-            <li><a href="#">सहायता केंद्र</a></li>
-            <li><a href="#">नियम</a></li>
-            <li><a href="#">गोपनीयता</a></li>
-          </ul>
+        <div class="site-footer__social">
+          <a href="/" aria-label="Village portal home"><i class="bi bi-house-door-fill"></i></a>
+          <a href="/villagers" aria-label="Villagers directory"><i class="bi bi-people-fill"></i></a>
+          <a href="/families" aria-label="Families directory"><i class="bi bi-diagram-3-fill"></i></a>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2024 भिलखेड़ा गांव डिजिटल पोर्टल। सभी अधिकार सुरक्षित।</p>
+      <div class="site-footer__cta">
+        <p class="site-footer__cta-label">Community Access</p>
+        <h3>Start exploring the village network</h3>
+        <p>Register a profile, browse villagers, or open the family directory to experience the portal.</p>
+        <div class="site-footer__cta-actions">
+          <a href="/register" class="site-footer__btn site-footer__btn--solid">Register</a>
+          <a href="/villagers" class="site-footer__btn site-footer__btn--ghost">Browse Villagers</a>
+        </div>
       </div>
     </div>
-  </footer>
+
+    <div class="site-footer__grid">
+      <div class="site-footer__column">
+        <h4>Portal</h4>
+        <a href="/">Home</a>
+        <a href="/about">About Village</a>
+        <a href="/community">Community</a>
+        <a href="/families">Family Directory</a>
+      </div>
+
+      <div class="site-footer__column">
+        <h4>Directories</h4>
+        <a href="/villagers">Village People</a>
+        <a href="/families">Families</a>
+        <a href="/register">Create Profile</a>
+        <a href="/login">Member Login</a>
+      </div>
+
+      <div class="site-footer__column">
+        <h4>Support</h4>
+        <a href="#contact">Contact Section</a>
+        <a href="/about">Village Information</a>
+        <a href="/community">Community Team</a>
+        <a href="/">Latest Updates</a>
+      </div>
+
+      <div class="site-footer__column">
+        <h4>Highlights</h4>
+        <div class="site-footer__mini-card">
+          <strong>Organized Data</strong>
+          <span>Profiles, families and admin content in one place</span>
+        </div>
+        <div class="site-footer__mini-card">
+          <strong>Public Friendly</strong>
+          <span>Easy browsing experience for village visitors and residents</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>&copy; 2026 Bhilkheda Village Digital Portal. All rights reserved.</p>
+      <div class="site-footer__bottom-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,95 +1,87 @@
-<!-- <%- layout("/layouts/boilerplate") %>
-<body>
-    <div class="row">
-        <div class="col-6 offset-3">
-            <h2>Resister Here</h2><hr>
-            <form action="/addUser" method="post" enctype="multipart/form-data"  >
-                <div class="mb-3">
-                    <label for="name" class="form-lable">Name: </label>
-                    <input placeholder="enter your name" name="name" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="age" class="form-lable">Age: </label>
-                    <input type="number" placeholder="enter your age" name="age" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-lable">Email: </label>
-                    <input placeholder="enter your email" name="email" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-lable">Password: </label>
-                    <input type="password" placeholder="enter password" name="password" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-lable">Image:</label>
-                    <h4>Add your photo:</h4>
-                    <input type="file" name="image" accept="image/*" class="form-control">
-                </div>
-
-                <button class="btn btn-dark">submit</button>
-            </form>
-        </div>
-    </div>
-</body> -->
-
-
 <%- layout("/layouts/boilerplate") %>
-<body>
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <!-- Card for Register Form -->
-        <div class="card shadow-lg border-0 rounded-4">
-          <div class="card-body p-4">
-            <h2 class="text-center mb-3">Register Here</h2>
-            <p class="text-muted text-center mb-4">Fill the details below to register yourself</p>
-            <hr>
 
-            <form action="/register" method="post" enctype="multipart/form-data">
-              <!-- Name -->
-              <div class="mb-3">
-                <label for="name" class="form-label fw-bold">Name</label>
-                <input type="text" placeholder="Enter your name" name="name" class="form-control" required>
-              </div>
-
-              <!-- Age -->
-              <div class="mb-3">
-                <label for="age" class="form-label fw-bold">Age</label>
-                <input type="number" placeholder="Enter your age" name="age" class="form-control" required>
-              </div>
-
-              <!-- Email -->
-              <div class="mb-3">
-                <label for="email" class="form-label fw-bold">Email</label>
-                <input type="email" placeholder="Enter your email" name="email" class="form-control" required>
-              </div>
-
-              <!-- Password -->
-              <div class="mb-3">
-                <label for="password" class="form-label fw-bold">Password</label>
-                <input type="password" placeholder="Enter password" name="password" class="form-control" required>
-              </div>
-
-              <!-- Image Upload -->
-              <div class="mb-3">
-                <label for="image" class="form-label fw-bold">Profile Photo</label>
-                <input type="file" name="image" accept="image/*" class="form-control">
-              </div>
-
-              <!-- Submit Button -->
-              <div class="d-grid mt-4">
-                <button class="btn btn-primary btn-lg shadow-sm">Submit</button>
-              </div>
-            </form>
+<div class="villager-auth-page">
+  <div class="row justify-content-center">
+    <div class="col-xl-9 col-lg-10">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4 p-md-5">
+          <div class="text-center mb-4">
+            <h2 class="mb-2">Register as a Villager</h2>
+            <p class="text-muted mb-0">Create your digital profile so people from the village can know who you are and what you do.</p>
           </div>
-        </div>
 
-        <!-- Small Note -->
-        <p class="text-center text-muted mt-3">
-          Already registered? <a href="/login" class="text-decoration-none">Login here</a>
-        </p>
+          <form action="/register" method="post" enctype="multipart/form-data">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="name" class="form-label fw-bold">Full Name</label>
+                <input id="name" type="text" placeholder="Enter your name" name="name" class="form-control" required>
+              </div>
+
+              <div class="col-md-3">
+                <label for="age" class="form-label fw-bold">Age</label>
+                <input id="age" type="number" placeholder="Age" name="age" class="form-control" required>
+              </div>
+
+              <div class="col-md-3">
+                <label for="gender" class="form-label fw-bold">Gender</label>
+                <select id="gender" name="gender" class="form-select">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="profession" class="form-label fw-bold">Profession</label>
+                <input id="profession" type="text" placeholder="Farmer, Teacher, Business, Student..." name="profession" class="form-control" required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="education" class="form-label fw-bold">Education</label>
+                <input id="education" type="text" placeholder="Graduate, Secondary, ITI..." name="education" class="form-control">
+              </div>
+
+              <div class="col-md-6">
+                <label for="email" class="form-label fw-bold">Email</label>
+                <input id="email" type="email" placeholder="Enter your email" name="email" class="form-control" required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="phone" class="form-label fw-bold">Phone</label>
+                <input id="phone" type="text" placeholder="Enter mobile number" name="phone" class="form-control">
+              </div>
+
+              <div class="col-md-6">
+                <label for="village" class="form-label fw-bold">Village</label>
+                <input id="village" type="text" placeholder="Village name" name="village" class="form-control" value="Bhilkheda">
+              </div>
+
+              <div class="col-md-6">
+                <label for="password" class="form-label fw-bold">Password</label>
+                <input id="password" type="password" placeholder="Enter password" name="password" class="form-control" required>
+              </div>
+
+              <div class="col-12">
+                <label for="about" class="form-label fw-bold">About</label>
+                <textarea id="about" name="about" class="form-control" rows="4" placeholder="Write a short introduction about yourself, your work, or your role in the village"></textarea>
+              </div>
+
+              <div class="col-12">
+                <label for="image" class="form-label fw-bold">Profile Photo</label>
+                <input id="image" type="file" name="image" accept="image/*" class="form-control">
+              </div>
+            </div>
+
+            <div class="d-grid mt-4">
+              <button class="btn btn-primary btn-lg shadow-sm">Create Profile</button>
+            </div>
+          </form>
+
+          <p class="text-center text-muted mt-4 mb-0">
+            Already registered? <a href="/login" class="text-decoration-none">Login here</a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</body>
-
+</div>

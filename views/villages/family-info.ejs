@@ -1,24 +1,99 @@
 <%- layout("/layouts/boilerplate") %>
 
-<body>
-    <h2>Family Details</h2>
-    <p><strong>Head Name:</strong> <%= family.headName %></p>
+<section class="family-profile py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <div class="card border-0 shadow-lg family-profile-card">
+        <div class="card-body p-4 p-md-5">
+          <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+            <div>
+              <span class="badge rounded-pill text-bg-primary mb-2">Family Profile</span>
+              <h2 class="mb-2"><%= family.headName %></h2>
+              <p class="text-muted mb-0">
+                <%= family.address?.village || "Bhilkheda" %>
+                <% if (family.address?.district) { %>
+                  , <%= family.address.district %>
+                <% } %>
+              </p>
+            </div>
+            <div class="family-profile__stat text-center">
+              <strong><%= family.members?.length || 0 %></strong>
+              <span>Linked Members</span>
+            </div>
+          </div>
 
-    <h3>Address:</h3>
-    <p><%= family.address.line1 %></p>
-    <p>Village: <%= family.address.village %></p>
-    <p>District: <%= family.address.district %></p>
-    <p>State: <%= family.address.state %></p>
-    <p>Pincode: <%= family.address.pincode %></p>
-    <br>
-    <a href="/families/<%= family._id %>/edit"> update Family</a>
-    <br>
-    <!-- Delete Form -->
-    <form action="/families/<%= family._id %>?_method=DELETE" method="POST" style="display:inline;">
-        <button type="submit" onclick="return confirm('Are you sure you want to delete this family?');">
-            🗑️ Delete
-        </button>
-    </form>
-    <br>
-    <a href="/families">🔙 Back to Families</a>
-</body>
+          <div class="row g-3 mb-4 family-detail-grid">
+            <div class="col-md-6">
+              <div class="profile-detail-box">
+                <span>Address</span>
+                <strong><%= family.address?.line1 || "Not added yet" %></strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="profile-detail-box">
+                <span>Pincode</span>
+                <strong><%= family.address?.pincode || "N/A" %></strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="profile-detail-box">
+                <span>District</span>
+                <strong><%= family.address?.district || "N/A" %></strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="profile-detail-box">
+                <span>State</span>
+                <strong><%= family.address?.state || "N/A" %></strong>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="profile-detail-box">
+                <span>Family Note</span>
+                <strong><%= family.familyNote || "No family note added yet." %></strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="family-members-section mb-4">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+              <h4 class="mb-0">Family Members</h4>
+              <a href="/villagers" class="btn btn-sm btn-outline-secondary">Browse Villagers</a>
+            </div>
+
+            <% if (family.members && family.members.length) { %>
+              <div class="row g-3">
+                <% for (let member of family.members) { %>
+                  <div class="col-md-6">
+                    <div class="family-member-card">
+                      <h5 class="mb-1"><%= member.name %></h5>
+                      <p class="mb-1 text-muted"><%= member.profession || "Profession not added" %></p>
+                      <p class="small mb-3"><strong>Village:</strong> <%= member.village || "Bhilkheda" %></p>
+                      <a href="/<%= member._id %>" class="btn btn-sm btn-outline-primary">Open Profile</a>
+                    </div>
+                  </div>
+                <% } %>
+              </div>
+            <% } else { %>
+              <div class="alert alert-light border mb-0">
+                Abhi is family ke saath koi villager link nahi kiya gaya hai.
+              </div>
+            <% } %>
+          </div>
+
+          <div class="d-flex flex-wrap gap-3">
+            <% if (currentUser) { %>
+              <a href="/families/<%= family._id %>/edit" class="btn btn-primary">Update Family</a>
+              <form action="/families/<%= family._id %>?_method=DELETE" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this family?');">
+                  Delete Family
+                </button>
+              </form>
+            <% } %>
+            <a href="/families" class="btn btn-outline-secondary">Back to Families</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
