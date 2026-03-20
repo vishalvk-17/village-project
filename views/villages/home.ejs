@@ -1,7 +1,7 @@
 <%- layout("/layouts/boilerplate") %>
 
 <main class="container my-5">
-  <% if (!isMongoConnected) { %>
+  <% if (typeof isMongoConnected !== "undefined" && !isMongoConnected) { %>
     <div class="alert alert-warning border-0 shadow-sm mb-4">
       Village data service is temporarily unavailable. Basic pages are still live, and full records will return once the database connection is restored.
     </div>

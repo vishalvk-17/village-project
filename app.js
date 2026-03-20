@@ -101,11 +101,33 @@ app.get("/", async (req, res) => {
       ? await Star.find({}).sort({ createdAt: -1 }).limit(6)
       : [];
 
-    res.render("villages/home.ejs", { showHero: true, notices, stars });
+    res.render("villages/home.ejs", { showHero: true, notices, stars, isMongoConnected });
   } catch (err) {
     console.error("Home page data load failed:", err);
-    res.render("villages/home.ejs", { showHero: true, notices: [], stars: [] });
+    res.render("villages/home.ejs", { showHero: true, notices: [], stars: [], isMongoConnected });
   }
+});
+
+app.use((req, res) => {
+  res.status(404).render("error.ejs", {
+    statusCode: 404,
+    title: "Page Not Found",
+    message: "The page you are looking for does not exist or may have been moved."
+  });
+});
+
+app.use((err, req, res, next) => {
+  console.error("Unhandled application error:", err);
+
+  const statusCode = err.statusCode || 500;
+  const title = statusCode === 500 ? "Something Went Wrong" : "Request Failed";
+  const message = err.message || "An unexpected error occurred. Please try again.";
+
+  res.status(statusCode).render("error.ejs", {
+    statusCode,
+    title,
+    message
+  });
 });
 
 // Database connection
