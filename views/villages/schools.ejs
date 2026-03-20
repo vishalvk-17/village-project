@@ -1,0 +1,22 @@
+<%- layout("/layouts/boilerplate") %>
+
+<section class="page-shell">
+  <div class="page-hero page-hero--center">
+    <span class="home-section-tag">Village Education</span>
+    <h1 class="section-title mb-3">Gaon Ki Schools</h1>
+    <p class="lead text-muted mb-0">Village students ke liye available education touchpoints aur learning support.</p>
+  </div>
+
+  <div class="row g-4">
+    <% schools.forEach(school => { %>
+      <div class="col-md-4">
+        <div class="home-process-card h-100 page-showcase-card">
+          <span class="home-process-card__step"><i class="bi bi-book"></i></span>
+          <h5><%= school.name %></h5>
+          <p class="mb-2 fw-semibold text-primary"><%= school.level %></p>
+          <p><%= school.description %></p>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>

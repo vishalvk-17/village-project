@@ -1,0 +1,31 @@
+<%- layout("/layouts/boilerplate") %>
+
+<section class="page-shell">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-6">
+      <div class="page-hero page-hero--compact">
+        <span class="home-section-tag">Village Governance</span>
+        <h1 class="section-title text-start mb-3">Gram Panchayat</h1>
+      </div>
+      <p class="lead text-muted">
+        Gram Panchayat gaon ki local governance, public services aur development planning ka mukhya kendra hoti hai.
+      </p>
+      <div class="d-grid gap-3 mt-4">
+        <% panchayatHighlights.forEach(item => { %>
+          <div class="home-mini-panel page-info-panel">
+            <p><%= item %></p>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="page-visual-card shadow-sm">
+        <img
+          src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1170&auto=format&fit=crop"
+          alt="Gram Panchayat"
+          class="img-fluid rounded-4"
+        >
+      </div>
+    </div>
+  </div>
+</section>

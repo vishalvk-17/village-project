@@ -1,0 +1,24 @@
+<%- layout("/layouts/boilerplate") %>
+
+<section class="page-shell">
+  <div class="page-hero page-hero--center">
+    <span class="home-section-tag">Village Places</span>
+    <h1 class="section-title mb-3">Gaon Ke Mandir</h1>
+    <p class="lead text-muted mb-0">Bhilkheda ke aastha sthalon aur unki samudaayik bhoomika ko yahan simple tareeke se dekha ja sakta hai.</p>
+  </div>
+
+  <div class="row g-4">
+    <% temples.forEach(temple => { %>
+      <div class="col-md-4">
+        <article class="card h-100 shadow-sm border-0 home-feature-card page-showcase-card">
+          <img src="<%= temple.image %>" class="card-img-top" alt="<%= temple.name %>">
+          <div class="card-body">
+            <span class="page-card-label">Spiritual Place</span>
+            <h5 class="card-title mt-2"><%= temple.name %></h5>
+            <p class="card-text"><%= temple.description %></p>
+          </div>
+        </article>
+      </div>
+    <% }) %>
+  </div>
+</section>
