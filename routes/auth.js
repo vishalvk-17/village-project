@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user.js");
 const bcrypt = require("bcryptjs");
+const { requireDatabase } = require("../middleware");
 
 // Show login form
 router.get("/login", (req, res) => {
@@ -10,7 +11,7 @@ router.get("/login", (req, res) => {
 });
 
 // Handle login
-router.post("/login", async (req, res) => {
+router.post("/login", requireDatabase, async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });

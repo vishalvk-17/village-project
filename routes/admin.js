@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { isLoggedIn, isAdmin } = require("../middleware");
+const { isLoggedIn, isAdmin, requireDatabase } = require("../middleware");
 const Notice = require("../models/notice");
 const Star = require("../models/star");
 const User = require("../models/user");
 
-router.get("/admin", isLoggedIn, isAdmin, async (req, res) => {
+router.get("/admin", requireDatabase, isLoggedIn, isAdmin, async (req, res) => {
   const notices = await Notice.find({}).sort({ createdAt: -1 });
   const stars = await Star.find({}).sort({ createdAt: -1 });
   const pendingVillagers = await User.find({ isApproved: false }).sort({ createdAt: -1 });
@@ -13,7 +13,7 @@ router.get("/admin", isLoggedIn, isAdmin, async (req, res) => {
   res.render("admin/dashboard.ejs", { notices, stars, pendingVillagers });
 });
 
-router.post("/admin/notices", isLoggedIn, isAdmin, async (req, res) => {
+router.post("/admin/notices", requireDatabase, isLoggedIn, isAdmin, async (req, res) => {
   const notice = new Notice({
     title: req.body.title?.trim(),
     description: req.body.description?.trim(),
@@ -25,7 +25,7 @@ router.post("/admin/notices", isLoggedIn, isAdmin, async (req, res) => {
   res.redirect("/admin");
 });
 
-router.get("/admin/notices/:id/edit", isLoggedIn, isAdmin, async (req, res) => {
+router.get("/admin/notices/:id/edit", requireDatabase, isLoggedIn, isAdmin, async (req, res) => {
   const notice = await Notice.findById(req.params.id);
 
   if (!notice) {
@@ -36,7 +36,7 @@ router.get("/admin/notices/:id/edit", isLoggedIn, isAdmin, async (req, res) => {
   res.render("admin/edit-notice.ejs", { notice });
 });
 
-router.put("/admin/notices/:id", isLoggedIn, isAdmin, async (req, res) => {
+router.put("/admin/notices/:id", requireDatabase, isLoggedIn, isAdmin, async (req, res) => {
   await Notice.findByIdAndUpdate(req.params.id, {
     title: req.body.title?.trim(),
     description: req.body.description?.trim(),
@@ -47,13 +47,13 @@ router.put("/admin/notices/:id", isLoggedIn, isAdmin, async (req, res) => {
   res.redirect("/admin");
 });
 
-router.delete("/admin/notices/:id", isLoggedIn, isAdmin, async (req, res) => {
+router.delete("/admin/notices/:id", requireDatabase, isLoggedIn, isAdmin, async (req, res) => {
   await Notice.findByIdAndDelete(req.params.id);
   req.flash("success", "Notice deleted successfully");
   res.redirect("/admin");
 });
 
-router.post("/admin/stars", isLoggedIn, isAdmin, async (req, res) => {
+router.post("/admin/stars", requireDatabase, isLoggedIn, isAdmin, async (req, res) => {
   const star = new Star({
     name: req.body.name?.trim(),
     title: req.body.title?.trim(),
@@ -67,7 +67,7 @@ router.post("/admin/stars", isLoggedIn, isAdmin, async (req, res) => {
   res.redirect("/admin");
 });
 
-router.get("/admin/stars/:id/edit", isLoggedIn, isAdmin, async (req, res) => {
+router.get("/admin/stars/:id/edit", requireDatabase, isLoggedIn, isAdmin, async (req, res) => {
   const star = await Star.findById(req.params.id);
 
   if (!star) {
@@ -78,7 +78,7 @@ router.get("/admin/stars/:id/edit", isLoggedIn, isAdmin, async (req, res) => {
   res.render("admin/edit-star.ejs", { star });
 });
 
-router.put("/admin/stars/:id", isLoggedIn, isAdmin, async (req, res) => {
+router.put("/admin/stars/:id", requireDatabase, isLoggedIn, isAdmin, async (req, res) => {
   await Star.findByIdAndUpdate(req.params.id, {
     name: req.body.name?.trim(),
     title: req.body.title?.trim(),
@@ -91,7 +91,7 @@ router.put("/admin/stars/:id", isLoggedIn, isAdmin, async (req, res) => {
   res.redirect("/admin");
 });
 
-router.delete("/admin/stars/:id", isLoggedIn, isAdmin, async (req, res) => {
+router.delete("/admin/stars/:id", requireDatabase, isLoggedIn, isAdmin, async (req, res) => {
   await Star.findByIdAndDelete(req.params.id);
   req.flash("success", "Village star removed successfully");
   res.redirect("/admin");

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const Family = require("../models/family.js");
 const User = require("../models/user.js");
-const { isLoggedIn } = require("../middleware");
+const { isLoggedIn, requireDatabase } = require("../middleware");
 
 function isValidObjectId(id) {
   return mongoose.Types.ObjectId.isValid(id);
@@ -41,18 +41,18 @@ function buildFamilyPayload(body) {
   };
 }
 
-router.get("/new", isLoggedIn, async (req, res) => {
+router.get("/new", requireDatabase, isLoggedIn, async (req, res) => {
   const villagers = await loadFamilyMembers();
   res.render("villages/create-family.ejs", { villagers });
 });
 
-router.post("/", isLoggedIn, async (req, res) => {
+router.post("/", requireDatabase, isLoggedIn, async (req, res) => {
   const savedFamily = await new Family(buildFamilyPayload(req.body)).save();
   req.flash("success", "Family added successfully");
   res.redirect(`/families/${savedFamily._id}`);
 });
 
-router.get("/", async (req, res) => {
+router.get("/", requireDatabase, async (req, res) => {
   const search = req.query.search?.trim() || "";
   const filters = {};
 
@@ -71,7 +71,7 @@ router.get("/", async (req, res) => {
   res.render("villages/families.ejs", { families, search });
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", requireDatabase, async (req, res) => {
   const { id } = req.params;
 
   if (!isValidObjectId(id)) {
@@ -89,7 +89,7 @@ router.get("/:id", async (req, res) => {
   res.render("villages/family-info.ejs", { family });
 });
 
-router.get("/:id/edit", isLoggedIn, async (req, res) => {
+router.get("/:id/edit", requireDatabase, isLoggedIn, async (req, res) => {
   const { id } = req.params;
 
   if (!isValidObjectId(id)) {
@@ -110,7 +110,7 @@ router.get("/:id/edit", isLoggedIn, async (req, res) => {
   res.render("villages/edit-family.ejs", { family, villagers });
 });
 
-router.put("/:id", isLoggedIn, async (req, res) => {
+router.put("/:id", requireDatabase, isLoggedIn, async (req, res) => {
   const { id } = req.params;
 
   if (!isValidObjectId(id)) {
@@ -129,7 +129,7 @@ router.put("/:id", isLoggedIn, async (req, res) => {
   res.redirect(`/families/${id}`);
 });
 
-router.delete("/:id", isLoggedIn, async (req, res) => {
+router.delete("/:id", requireDatabase, isLoggedIn, async (req, res) => {
   const { id } = req.params;
 
   if (!isValidObjectId(id)) {

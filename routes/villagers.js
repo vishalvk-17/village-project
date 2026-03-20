@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const { isLoggedIn, isOwnerOrAdmin, isAdmin } = require("../middleware");
+const { isLoggedIn, isOwnerOrAdmin, isAdmin, requireDatabase } = require("../middleware");
 const upload = require("../utils/multer.js");
 const User = require("../models/user.js");
 const bcrypt = require("bcrypt");
@@ -26,7 +26,7 @@ function isValidObjectId(id) {
   return mongoose.Types.ObjectId.isValid(id);
 }
 
-router.get("/villagers", async (req, res) => {
+router.get("/villagers", requireDatabase, async (req, res) => {
   try {
     const search = req.query.search?.trim() || "";
     const profession = req.query.profession?.trim() || "";
@@ -65,7 +65,7 @@ router.get("/register", (req, res) => {
   res.render("villages/index.ejs");
 });
 
-router.post("/register", upload.single("image"), async (req, res) => {
+router.post("/register", requireDatabase, upload.single("image"), async (req, res) => {
   try {
     const userData = { ...req.body };
     userData.phone = userData.phone?.trim();
@@ -93,7 +93,7 @@ router.post("/register", upload.single("image"), async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", requireDatabase, async (req, res) => {
   const { id } = req.params;
 
   if (!isValidObjectId(id)) {
@@ -119,7 +119,7 @@ router.get("/:id", async (req, res) => {
   res.render("villages/user-info", { user });
 });
 
-router.get("/:id/edit", isLoggedIn, isOwnerOrAdmin, async (req, res) => {
+router.get("/:id/edit", requireDatabase, isLoggedIn, isOwnerOrAdmin, async (req, res) => {
   const { id } = req.params;
 
   if (!isValidObjectId(id)) {
@@ -137,7 +137,7 @@ router.get("/:id/edit", isLoggedIn, isOwnerOrAdmin, async (req, res) => {
   res.render("villages/edit", { user });
 });
 
-router.put("/:id", isLoggedIn, isOwnerOrAdmin, upload.single("image"), async (req, res) => {
+router.put("/:id", requireDatabase, isLoggedIn, isOwnerOrAdmin, upload.single("image"), async (req, res) => {
   const { id } = req.params;
 
   if (!isValidObjectId(id)) {
@@ -171,7 +171,7 @@ router.put("/:id", isLoggedIn, isOwnerOrAdmin, upload.single("image"), async (re
   res.redirect(`/${user._id}`);
 });
 
-router.post("/:id/approve", isLoggedIn, isAdmin, async (req, res) => {
+router.post("/:id/approve", requireDatabase, isLoggedIn, isAdmin, async (req, res) => {
   const { id } = req.params;
 
   if (!isValidObjectId(id)) {
@@ -184,7 +184,7 @@ router.post("/:id/approve", isLoggedIn, isAdmin, async (req, res) => {
   res.redirect(`/${id}`);
 });
 
-router.delete("/:id", isLoggedIn, isOwnerOrAdmin, async (req, res) => {
+router.delete("/:id", requireDatabase, isLoggedIn, isOwnerOrAdmin, async (req, res) => {
   try {
     const { id } = req.params;
 

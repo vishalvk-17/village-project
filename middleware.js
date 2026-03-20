@@ -3,6 +3,13 @@ function isLoggedIn(req, res, next) {
   return res.redirect("/login");
 }
 
+function requireDatabase(req, res, next) {
+  if (req.app.locals.isMongoConnected) return next();
+
+  req.flash("error", "Database connection is temporarily unavailable. Please try again in a moment.");
+  return res.redirect("/");
+}
+
 function isOwnerOrAdmin(req, res, next) {
   const user = req.session.user;
   if (!user) return res.redirect("/login");
@@ -17,4 +24,4 @@ function isAdmin(req, res, next) {
   return res.status(403).send("Only admin can do this action");
 }
 
-module.exports = { isLoggedIn, isOwnerOrAdmin, isAdmin };
+module.exports = { isLoggedIn, isOwnerOrAdmin, isAdmin, requireDatabase };

@@ -40,6 +40,7 @@ const Notice = require("./models/notice");
 const Star = require("./models/star");
 
 let isMongoConnected = false;
+app.locals.isMongoConnected = false;
 
 // View engine
 app.set("view engine", "ejs");
@@ -53,20 +54,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 // ----- Session & Flash -----
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "replace_this_with_a_strong_secret",
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URL,
-      collectionName: "sessions"
-    }),
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 // 1 day
-    }
-  })
-);
+const sessionConfig = {
+  secret: process.env.SESSION_SECRET || "replace_this_with_a_strong_secret",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 // 1 day
+  }
+};
+
+if (process.env.SESSION_STORE_URL) {
+  sessionConfig.store = MongoStore.create({
+    mongoUrl: process.env.SESSION_STORE_URL,
+    collectionName: "sessions"
+  });
+}
+
+app.use(session(sessionConfig));
 app.use(flash());
 
 // Make current user and flash messages available to all templates
@@ -74,6 +78,7 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.session.user || null;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.isMongoConnected = req.app.locals.isMongoConnected;
   next();
 });
 
@@ -105,10 +110,12 @@ app.get("/", async (req, res) => {
 mongoose.connect(process.env.MONGODB_URL)
   .then(() => {
     isMongoConnected = true;
+    app.locals.isMongoConnected = true;
     console.log("MongoDB connected");
   })
   .catch(err => {
     isMongoConnected = false;
+    app.locals.isMongoConnected = false;
     console.log("MongoDB connection failed:", err);
   });
 
