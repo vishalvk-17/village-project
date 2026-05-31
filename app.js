@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const path = require("path");
@@ -8,6 +8,7 @@ const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
+const mongoUrl = process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/villageWeb";
 
 // Routes
 const villagerRoutes = require("./routes/villagers");
@@ -31,7 +32,7 @@ app.use(
     secret: process.env.SESSION_SECRET || "replace_this_with_a_strong_secret",
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/villageWeb' }),
+    store: MongoStore.create({ mongoUrl }),
     cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 day
   })
 );
@@ -57,7 +58,7 @@ app.get("/", (req, res) => {
 });
 
 // Database connection
-mongoose.connect('mongodb://127.0.0.1:27017/villageWeb')
+mongoose.connect(mongoUrl)
   .then(() => console.log("Database connected successfully"))
   .catch(err => console.log(err));
 
